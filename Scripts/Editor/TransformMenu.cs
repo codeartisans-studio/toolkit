@@ -80,11 +80,15 @@ namespace Toolkit.Editor
 
 			Camera camera = Camera.main;
 
-			bool isPerspective = !camera.orthographic;
-			bool hasRendererComponent = transform.GetComponent<Renderer> () != null;
-			bool hasCameraAdjustmentScript = camera.GetComponent<CameraAdjustment> () != null;
+			if (camera) {
+				bool isPerspective = !camera.orthographic;
+				bool hasRendererComponent = transform.GetComponent<Renderer> () != null;
+				bool hasCameraAdjustmentScript = camera.GetComponent<CameraAdjustment> () != null;
 
-			return isPerspective && hasRendererComponent && hasCameraAdjustmentScript;
+				return isPerspective && hasRendererComponent && hasCameraAdjustmentScript;
+			}
+
+			return false;
 		}
 	}
 }
