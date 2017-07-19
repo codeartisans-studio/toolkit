@@ -30,7 +30,7 @@ namespace Toolkit.Managers
 		};
 
 		// Get an AssetBundle
-		public static AssetBundle getAssetBundle (string url, int version)
+		public static AssetBundle GetAssetBundle (string url, int version)
 		{
 			string keyName = url + version.ToString ();
 			AssetBundleRef abRef;
@@ -41,7 +41,7 @@ namespace Toolkit.Managers
 		}
 
 		// Download an AssetBundle
-		public static IEnumerator downloadAssetBundle (string url, int version)
+		public static IEnumerator DownloadAssetBundle (string url, int version)
 		{
 			string keyName = url + version.ToString ();
 			if (dictAssetBundleRefs.ContainsKey (keyName))
