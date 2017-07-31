@@ -10,11 +10,14 @@ namespace Toolkit.UI
 	{
 		public GameObject board;
 
+		private bool showing;
 		private Action action;
 
 		public void Show (Action callback)
 		{
 			Show ();
+
+			showing = true;
 
 			action = callback;
 		}
@@ -31,10 +34,10 @@ namespace Toolkit.UI
 
 		public void Back ()
 		{
-			if (action != null) {
-				action ();
+			if (showing) {
+				showing = false;
 
-				action = null;
+				action ();
 			}
 		}
 	}
