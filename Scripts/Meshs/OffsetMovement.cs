@@ -8,18 +8,18 @@ namespace Toolkit.Meshs
 	{
 		public Vector2 speed = Vector2.left;
 
-		private MeshRenderer mashRenderer;
+		private MeshRenderer meshRenderer;
 
 		void Awake ()
 		{
-			mashRenderer = GetComponent<MeshRenderer> ();
+			meshRenderer = GetComponent<MeshRenderer> ();
 		}
 
 		// Update is called once per frame
 		void Update ()
 		{
 			Vector2 offset = -speed * Time.time;
-			mashRenderer.material.SetTextureOffset ("_MainTex", offset);
+			meshRenderer.material.SetTextureOffset ("_MainTex", offset);
 		}
 	}
 }
