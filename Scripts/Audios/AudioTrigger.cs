@@ -19,7 +19,7 @@ namespace Toolkit.Audios
 			audioSource.Play ();
 		}
 
-		void OnTriggerEnter (Collider2D other)
+		void OnTriggerEnter (Collider other)
 		{
 			audioSource.Play ();
 		}

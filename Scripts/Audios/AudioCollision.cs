@@ -19,7 +19,7 @@ namespace Toolkit.Audios
 			audioSource.Play ();
 		}
 
-		void OnCollisionEnter (Collision2D collision)
+		void OnCollisionEnter (Collision collision)
 		{
 			audioSource.Play ();
 		}
