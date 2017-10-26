@@ -14,7 +14,12 @@ namespace Toolkit.Audios
 			audioSource = GetComponent<AudioSource> ();
 		}
 
-		void OnCollisionEnter (Collision collision)
+		void OnCollisionEnter2D (Collision2D collision)
+		{
+			audioSource.Play ();
+		}
+
+		void OnCollisionEnter (Collision2D collision)
 		{
 			audioSource.Play ();
 		}

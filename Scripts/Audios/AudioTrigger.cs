@@ -18,5 +18,10 @@ namespace Toolkit.Audios
 		{
 			audioSource.Play ();
 		}
+
+		void OnTriggerEnter (Collider2D other)
+		{
+			audioSource.Play ();
+		}
 	}
 }
