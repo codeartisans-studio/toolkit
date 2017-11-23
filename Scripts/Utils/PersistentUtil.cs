@@ -9,24 +9,18 @@ namespace Toolkit.Utils
 {
 	public static class PersistentUtil
 	{
-		public static T LoadBinary<T> (string filename) where T : class
+		public static T LoadBinary<T> (string filename)
 		{
 			string filePath = Application.persistentDataPath + "/" + filename;
 
-			T data = null;
+			BinaryFormatter formatter = new BinaryFormatter ();
 
-			if (File.Exists (filePath)) {
-				BinaryFormatter formatter = new BinaryFormatter ();
-
-				using (FileStream file = File.Open (filePath, FileMode.Open)) {
-					data = (T)formatter.Deserialize (file);
-				}
+			using (FileStream file = File.Open (filePath, FileMode.Open)) {
+				return (T)formatter.Deserialize (file);
 			}
-
-			return data;
 		}
 
-		public static void SaveBinary<T> (string filename, T data) where T : class
+		public static void SaveBinary<T> (string filename, T data)
 		{
 			string filePath = Application.persistentDataPath + "/" + filename;
 
@@ -37,24 +31,18 @@ namespace Toolkit.Utils
 			}
 		}
 
-		public static T LoadXml<T> (string filename) where T : class
+		public static T LoadXml<T> (string filename)
 		{
 			string filePath = Application.persistentDataPath + "/" + filename;
 
-			T data = null;
+			XmlSerializer serializer = new XmlSerializer (typeof(T));
 
-			if (File.Exists (filePath)) {
-				XmlSerializer serializer = new XmlSerializer (typeof(T));
-
-				using (FileStream file = File.Open (filePath, FileMode.Open)) {
-					data = (T)serializer.Deserialize (file);
-				}
+			using (FileStream file = File.Open (filePath, FileMode.Open)) {
+				return (T)serializer.Deserialize (file);
 			}
-
-			return data;
 		}
 
-		public static void SaveXml<T> (string filename, T data) where T : class
+		public static void SaveXml<T> (string filename, T data)
 		{
 			string filePath = Application.persistentDataPath + "/" + filename;
 
@@ -63,6 +51,27 @@ namespace Toolkit.Utils
 			using (FileStream file = File.Create (filePath)) {
 				serializer.Serialize (file, data);
 			}
+		}
+
+		public static T FromJSON<T> (string filename)
+		{
+			string filePath = Application.persistentDataPath + "/" + filename;
+
+			return JsonUtility.FromJson<T> (File.ReadAllText (filePath));
+		}
+
+		public static void FromJsonOverwrite (string filename, object objectToOverwrite)
+		{
+			string filePath = Application.persistentDataPath + "/" + filename;
+
+			JsonUtility.FromJsonOverwrite (File.ReadAllText (filePath), objectToOverwrite);
+		}
+
+		public static void ToJSON (string filename, object obj, bool prettyPrint = false)
+		{
+			string filePath = Application.persistentDataPath + "/" + filename;
+
+			File.WriteAllText (filePath, JsonUtility.ToJson (obj, prettyPrint));
 		}
 	}
 }
