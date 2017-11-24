@@ -5,9 +5,9 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using UnityEngine;
 
-namespace Toolkit.Utils
+namespace Toolkit.Utilities
 {
-	public static class PersistentUtil
+	public static class PersistentUtility
 	{
 		public static T LoadBinary<T> (string filename)
 		{

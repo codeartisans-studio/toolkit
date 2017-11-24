@@ -3,9 +3,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Utils
+namespace Toolkit.Utilities
 {
-	public static class InvokeUtil
+	public static class InvokeUtility
 	{
 		public static IEnumerator WaitForFixedUpdate (Action action)
 		{

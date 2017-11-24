@@ -4,9 +4,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-namespace Toolkit.Utils
+namespace Toolkit.Utilities
 {
-	public static class InputUtil
+	public static class InputUtility
 	{
 		/// <summary>
 		/// Cast a ray to test if Input.mousePosition is over any UI object in EventSystem.current. This is a replacement
