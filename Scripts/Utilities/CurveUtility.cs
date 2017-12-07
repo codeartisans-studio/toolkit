@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit.Utilities
 {
-	public static class MathUtility
+	public static class CurveUtility
 	{
 		// Cubic Hermite spline (Unit interval (0, 1))
 		public static float HermiteLerp (float p0, float p1, float m0, float m1, float t)
