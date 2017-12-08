@@ -1,9 +1,27 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Toolkit.Utilities
 {
+	[Serializable]
+	public struct CurvePoint
+	{
+		public int x;
+		public int y;
+		public float inTangent;
+		public float outTangent;
+
+		public CurvePoint (int x, int y, float inTangent = 0, float outTangent = 0)
+		{
+			this.x = x;
+			this.y = y;
+			this.inTangent = inTangent;
+			this.outTangent = outTangent;
+		}
+	}
+
 	public static class CurveUtility
 	{
 		// Cubic Bézier curves
@@ -65,6 +83,27 @@ namespace Toolkit.Utilities
 			return HermiteLerp (p0.x, p0.y, p1.x, p1.y, outTangent, inTangent, x);
 		}
 
+		public static float HermiteLerp (CurvePoint p0, CurvePoint p1, float x)
+		{
+			return HermiteLerp (p0.x, p0.y, p1.x, p1.y, p0.outTangent, p1.inTangent, x);
+		}
+
+		public static float HermiteLerp (CurvePoint[] points, float x)
+		{
+			float y	= 0;
+
+			for (int i = 0; i < points.Length - 1; i++) {
+				CurvePoint p0 = points [i];
+				CurvePoint p1 = points [i + 1];
+				
+				if (p0.x <= x && x < p1.x) {
+					y = HermiteLerp (p0, p1, x);
+				}
+			}
+
+			return y;
+		}
+
 		// Catmull–Rom spline
 		public static float CatmullRomLerp (float p0, float p1, float p2, float p3, float t)
 		{
@@ -89,6 +128,24 @@ namespace Toolkit.Utilities
 		public static float CatmullRomLerp (Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float x)
 		{
 			return CatmullRomLerp (p0.x, p0.y, p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, x);
+		}
+
+		public static float CatmullRomLerp (Vector2[] points, float x)
+		{
+			float y	= 0;
+
+			for (int i = 1; i < points.Length - 2; i++) {
+				Vector2 p0 = points [i - 1];
+				Vector2 p1 = points [i];
+				Vector2 p2 = points [i + 1];
+				Vector2 p3 = points [i + 2];
+
+				if (p1.x <= x && x < p2.x) {
+					y = CatmullRomLerp (p0, p1, p2, p3, x);
+				}
+			}
+
+			return y;
 		}
 
 		// Cardinal spline
@@ -117,6 +174,24 @@ namespace Toolkit.Utilities
 			return CardinalLerp (p0.x, p0.y, p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, tension, x);
 		}
 
+		public static float CardinalLerp (Vector2[] points, float tension, float x)
+		{
+			float y	= 0;
+
+			for (int i = 1; i < points.Length - 2; i++) {
+				Vector2 p0 = points [i - 1];
+				Vector2 p1 = points [i];
+				Vector2 p2 = points [i + 1];
+				Vector2 p3 = points [i + 2];
+
+				if (p1.x <= x && x < p2.x) {
+					y = CardinalLerp (p0, p1, p2, p3, tension, x);
+				}
+			}
+
+			return y;
+		}
+
 		// Kochanek–Bartels spline
 		// t	tension		Changes the length of the tangent vector
 		// b	bias		Primarily changes the direction of the tangent vector
@@ -138,6 +213,24 @@ namespace Toolkit.Utilities
 		public static float KochanekBartelsLerp (Vector2 p0, Vector2 p1, Vector2 p2, Vector2 p3, float tension, float bias, float continuity, float x)
 		{
 			return KochanekBartelsLerp (p0.x, p0.y, p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, tension, bias, continuity, x);
+		}
+
+		public static float KochanekBartelsLerp (Vector2[] points, float tension, float bias, float continuity, float x)
+		{
+			float y	= 0;
+
+			for (int i = 1; i < points.Length - 2; i++) {
+				Vector2 p0 = points [i - 1];
+				Vector2 p1 = points [i];
+				Vector2 p2 = points [i + 1];
+				Vector2 p3 = points [i + 2];
+
+				if (p1.x <= x && x < p2.x) {
+					y = KochanekBartelsLerp (p0, p1, p2, p3, tension, bias, continuity, x);
+				}
+			}
+
+			return y;
 		}
 	}
 }
