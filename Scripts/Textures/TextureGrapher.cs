@@ -184,7 +184,7 @@ namespace Toolkit.Textures
 		{
 			step = 0;
 
-			for (int x = pixelX0; x <= pixelX1; x++) {
+			for (int x = pixelX0; x < pixelX1; x++) {
 				if (CheckPixel ()) {
 					SetPixel (x, pixelY);
 				}
@@ -197,7 +197,7 @@ namespace Toolkit.Textures
 		{
 			step = 0;
 
-			for (int y = pixelY0; y <= pixelY1; y++) {
+			for (int y = pixelY0; y < pixelY1; y++) {
 				if (CheckPixel ()) {
 					SetPixel (pixelX, y);
 				}
@@ -247,18 +247,14 @@ namespace Toolkit.Textures
 
 		public void DrawHorizontalLine (float graphY)
 		{
-			int y = Graph2PixelY (graphY);
-
-			DrawHorizontalSegment (y, graphRect.xMin, graphRect.xMax);
+			DrawHorizontalSegment (graphY, graphRect.xMin, graphRect.xMax);
 
 			dirty = true;
 		}
 
 		public void DrawVerticalLine (float graphX)
 		{
-			int x = Graph2PixelX (graphX);
-
-			DrawVerticalSegment (x, graphRect.yMin, graphRect.yMax);
+			DrawVerticalSegment (graphX, graphRect.yMin, graphRect.yMax);
 
 			dirty = true;
 		}
@@ -309,11 +305,11 @@ namespace Toolkit.Textures
 			int x1 = Graph2PixelX (graphX + graphWidth);
 			int y1 = Graph2PixelY (graphY + graphHeight);
 
-			for (int x = x0; x <= x1; x++) {
+			for (int x = x0; x < x1; x++) {
 				VerticalSegment (x, y0, y1);
 			}
 
-			for (int y = y0; y <= y1; y++) {
+			for (int y = y0; y < y1; y++) {
 				HorizontalSegment (y, x0, x1);
 			}
 
@@ -349,7 +345,7 @@ namespace Toolkit.Textures
 			int x0 = Graph2PixelX (graphX0);
 			int x1 = Graph2PixelX (graphX1);
 			
-			for (int x = x0; x <= x1; x++) {
+			for (int x = x0; x < x1; x++) {
 				if (CheckPixel ()) {
 					SetPixel (x, Graph2PixelY (function (Pixel2GraphX (x))));
 				}
