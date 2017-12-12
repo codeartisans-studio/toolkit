@@ -17,20 +17,24 @@ namespace Toolkit.Textures
 	{
 		public Texture2D texture { get; }
 
-		public Color color = Color.white;
 		public LineType lineType = LineType.Solid;
 		public int dotInterval = 5;
 		public int dashInterval = 5;
+		public bool alphaBlend = true;
+
+		private Rect _graphRect;
+		private Color _color;
 
 		private Color[] pixels;
 		private Color[] buffer;
-		private Rect rect;
 		private int pixelWidth;
 		private int pixelHeight;
 		private float scaleX;
 		private float scaleY;
-		private bool dirty;
+		private float srcAlpha;
+		private float dstAlpha;
 		private int step;
+		private bool dirty;
 
 		public TextureGrapher (int pixelWidth, int pixelHeight, Rect graphRect)
 		{
@@ -54,13 +58,25 @@ namespace Toolkit.Textures
 
 		public Rect graphRect {
 			get {
-				return rect;
+				return _graphRect;
 			}
 			set {
-				rect = value;
+				_graphRect = value;
 
-				scaleX = pixelWidth / rect.width;
-				scaleY = pixelHeight / rect.height;
+				scaleX = pixelWidth / _graphRect.width;
+				scaleY = pixelHeight / _graphRect.height;
+			}
+		}
+
+		public Color color {
+			get {
+				return _color;
+			}
+			set {
+				_color = value;
+
+				srcAlpha = _color.a;
+				dstAlpha = 1 - srcAlpha;
 			}
 		}
 
@@ -166,6 +182,16 @@ namespace Toolkit.Textures
 		}
 
 		// pixel methods
+		public Color AlphaBlend (Color dst)
+		{
+			return new Color (
+				color.r * srcAlpha + dst.r * dstAlpha, 
+				color.g * srcAlpha + dst.g * dstAlpha,
+				color.b * srcAlpha + dst.b * dstAlpha,
+				color.a * srcAlpha + dst.a * dstAlpha
+			);
+		}
+
 		public Color GetPixel (int pixelX, int pixelY)
 		{
 			return pixels [pixelY * texture.width + pixelX];
@@ -174,7 +200,9 @@ namespace Toolkit.Textures
 		public void SetPixel (int pixelX, int pixelY)
 		{
 			if (pixelX >= 0 && pixelX < texture.width && pixelY >= 0 && pixelY < texture.height) {
-				pixels [pixelY * texture.width + pixelX] = color;
+				int i = pixelY * texture.width + pixelX;
+
+				pixels [i] = alphaBlend ? AlphaBlend (pixels [i]) : color;
 
 				dirty = true;
 			}
