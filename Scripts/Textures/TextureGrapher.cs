@@ -206,20 +206,6 @@ namespace Toolkit.Textures
 			dirty = true;
 		}
 
-		//		public void HorizontalLine (int pixelY)
-		//		{
-		//			HorizontalSegment (pixelY, 0, texture.width);
-		//
-		//			dirty = true;
-		//		}
-		//
-		//		public void VerticalLine (int pixelX)
-		//		{
-		//			VerticalSegment (pixelX, 0, texture.height);
-		//
-		//			dirty = true;
-		//		}
-
 		public void Ellipse (int pixelCenterX, int pixelCenterY, int pixelRadiusX, int pixelRadiusY)
 		{
 			step = 0;
@@ -235,31 +221,6 @@ namespace Toolkit.Textures
 
 			dirty = true;
 		}
-
-		//		public void Circle (float pixelCenterX, float pixelCenterY, int pixelRadius)
-		//		{
-		//			Ellipse (pixelCenterX, pixelCenterY, pixelRadius, pixelRadius);
-		//		}
-		//
-		//		public void Function (Func<int, int> function, int pixelX0, int pixelX1)
-		//		{
-		//			step = 0;
-		//
-		//			for (int x = pixelX0; x <= pixelX1; x++) {
-		//				if (CheckPixel ()) {
-		//					SetPixel (x, function (x));
-		//				}
-		//			}
-		//
-		//			dirty = true;
-		//		}
-		//
-		//		public void Function (Func<int, int> function)
-		//		{
-		//			Function (function, 0, texture.width);
-		//
-		//			dirty = true;
-		//		}
 
 		// graph methods
 		public void DrawHorizontalSegment (float graphY, float graphX0, float graphX1)
