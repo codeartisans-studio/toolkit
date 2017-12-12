@@ -126,12 +126,12 @@ namespace Toolkit.Textures
 		// pixel tp graph methods
 		public float Pixel2GraphX (int pixelX)
 		{
-			return pixelX / scaleX;
+			return graphRect.xMin + pixelX / scaleX;
 		}
 
 		public float Pixel2GraphY (int pixelY)
 		{
-			return pixelY / scaleY;
+			return graphRect.yMin + pixelY / scaleY;
 		}
 
 		public float Pixel2GraphWidth (int pixelWidth)
@@ -261,11 +261,11 @@ namespace Toolkit.Textures
 
 		public void DrawGrid (float graphStepX, float graphStepY)
 		{
-			for (float x = graphRect.xMin + graphStepX; x < graphRect.xMax; x += graphStepX) {
+			for (float x = (int)(graphRect.xMin / graphStepX) * graphStepX; x < graphRect.xMax; x += graphStepX) {
 				DrawVerticalLine (x);
 			}
 
-			for (float y = graphRect.yMin + graphStepY; y < graphRect.yMax; y += graphStepY) {
+			for (float y = (int)(graphRect.yMin / graphStepY) * graphStepY; y < graphRect.yMax; y += graphStepY) {
 				DrawHorizontalLine (y);
 			}
 
