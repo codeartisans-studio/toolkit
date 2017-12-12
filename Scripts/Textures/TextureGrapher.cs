@@ -17,12 +17,6 @@ namespace Toolkit.Textures
 	{
 		public Texture2D texture { get; }
 
-		public Rect graphRect { get; }
-
-		public float scaleX { get; }
-
-		public float scaleY { get; }
-
 		public Color color = Color.white;
 		public LineType lineType = LineType.Solid;
 		public int dotInterval = 5;
@@ -30,28 +24,44 @@ namespace Toolkit.Textures
 
 		private Color[] pixels;
 		private Color[] buffer;
+		private Rect rect;
+		private int pixelWidth;
+		private int pixelHeight;
+		private float scaleX;
+		private float scaleY;
 		private bool dirty;
 		private int step;
 
-		public TextureGrapher (int pixelWidth, int pixelHeight, float xMin, float yMin, float xMax, float yMax)
+		public TextureGrapher (int pixelWidth, int pixelHeight, Rect graphRect)
 		{
+			this.pixelWidth = pixelWidth;
+			this.pixelHeight = pixelHeight;
+			this.graphRect = graphRect;
+
 			texture = new Texture2D (pixelWidth, pixelHeight, TextureFormat.RGBA32, false);
 			pixels = new Color[pixelWidth * pixelHeight];
-
-			Rect rect = new Rect ();
-			rect.xMin = xMin;
-			rect.yMin = yMin;
-			rect.xMax = xMax;
-			rect.yMax = yMax;
-			graphRect = rect;
-
-			scaleX = pixelWidth / graphRect.width;
-			scaleY = pixelHeight / graphRect.height;
 		}
 
-		public TextureGrapher (int pixelWidth, int pixelHeight) : this (pixelWidth, pixelHeight, 0, 0, pixelWidth, pixelHeight)
+		public TextureGrapher (int pixelWidth, int pixelHeight) : this (pixelWidth, pixelHeight, new Rect (0, 0, pixelWidth, pixelHeight))
 		{
 			
+		}
+
+		public TextureGrapher (int pixelWidth, int pixelHeight, float graphWidth, float graphHeight) : this (pixelWidth, pixelHeight, new Rect (0, 0, graphWidth, graphHeight))
+		{
+			
+		}
+
+		public Rect graphRect {
+			get {
+				return rect;
+			}
+			set {
+				rect = value;
+
+				scaleX = pixelWidth / rect.width;
+				scaleY = pixelHeight / rect.height;
+			}
 		}
 
 		private bool CheckPixel ()
@@ -170,7 +180,7 @@ namespace Toolkit.Textures
 			}
 		}
 
-		public void PixelHorizontalSegment (int pixelY, int pixelX0, int pixelX1)
+		public void HorizontalSegment (int pixelY, int pixelX0, int pixelX1)
 		{
 			step = 0;
 
@@ -183,7 +193,7 @@ namespace Toolkit.Textures
 			dirty = true;
 		}
 
-		public void PixelVerticalSegment (int pixelX, int pixelY0, int pixelY1)
+		public void VerticalSegment (int pixelX, int pixelY0, int pixelY1)
 		{
 			step = 0;
 
@@ -196,106 +206,142 @@ namespace Toolkit.Textures
 			dirty = true;
 		}
 
-		public void PixelHorizontalLine (int pixelY)
-		{
-			PixelHorizontalSegment (pixelY, 0, texture.width);
+		//		public void HorizontalLine (int pixelY)
+		//		{
+		//			HorizontalSegment (pixelY, 0, texture.width);
+		//
+		//			dirty = true;
+		//		}
+		//
+		//		public void VerticalLine (int pixelX)
+		//		{
+		//			VerticalSegment (pixelX, 0, texture.height);
+		//
+		//			dirty = true;
+		//		}
 
-			dirty = true;
-		}
-
-		public void PixelVerticalLine (int pixelX)
-		{
-			PixelVerticalSegment (pixelX, 0, texture.height);
-
-			dirty = true;
-		}
-
-		public void PixelFunction (Func<int, int> function, int pixelX0, int pixelX1)
+		public void Ellipse (int pixelCenterX, int pixelCenterY, int pixelRadiusX, int pixelRadiusY)
 		{
 			step = 0;
 
-			for (int x = pixelX0; x <= pixelX1; x++) {
+			for (float i = 0; i < Math.PI * 2; i += 0.1f) {
+				int x = Mathf.RoundToInt (pixelCenterX + Mathf.Cos (i) * pixelRadiusX);
+				int y = Mathf.RoundToInt (pixelCenterY + Mathf.Sin (i) * pixelRadiusY);
+
 				if (CheckPixel ()) {
-					SetPixel (x, function (x));
+					SetPixel (x, y);
 				}
 			}
 
 			dirty = true;
 		}
 
-		public void PixelFunction (Func<int, int> function)
-		{
-			PixelFunction (function, 0, texture.width);
-
-			dirty = true;
-		}
+		//		public void Circle (float pixelCenterX, float pixelCenterY, int pixelRadius)
+		//		{
+		//			Ellipse (pixelCenterX, pixelCenterY, pixelRadius, pixelRadius);
+		//		}
+		//
+		//		public void Function (Func<int, int> function, int pixelX0, int pixelX1)
+		//		{
+		//			step = 0;
+		//
+		//			for (int x = pixelX0; x <= pixelX1; x++) {
+		//				if (CheckPixel ()) {
+		//					SetPixel (x, function (x));
+		//				}
+		//			}
+		//
+		//			dirty = true;
+		//		}
+		//
+		//		public void Function (Func<int, int> function)
+		//		{
+		//			Function (function, 0, texture.width);
+		//
+		//			dirty = true;
+		//		}
 
 		// graph methods
-		public void GraphCross (float graphX, float graphY, int pixelRadiusX = 1, int pixelRadiusY = 1)
-		{
-			int x = Graph2PixelX (graphX);
-			int y = Graph2PixelY (graphY);
-
-			PixelHorizontalSegment (y, x - pixelRadiusX, x + pixelRadiusX);
-			PixelVerticalSegment (x, y - pixelRadiusX, y + pixelRadiusY);
-
-			dirty = true;
-		}
-
-		public void GraphHorizontalSegment (float graphY, float graphX0, float graphX1)
+		public void DrawHorizontalSegment (float graphY, float graphX0, float graphX1)
 		{
 			int x0 = Graph2PixelX (graphX0);
 			int x1 = Graph2PixelX (graphX1);
 			int y = Graph2PixelY (graphY);
 
-			PixelHorizontalSegment (y, x0, x1);
+			HorizontalSegment (y, x0, x1);
 
 			dirty = true;
 		}
 
-		public void GraphVerticalSegment (float graphX, float graphY0, float graphY1)
+		public void DrawVerticalSegment (float graphX, float graphY0, float graphY1)
 		{
 			int y0 = Graph2PixelY (graphY0);
 			int y1 = Graph2PixelY (graphY1);
 			int x = Graph2PixelX (graphX);
 
-			PixelVerticalSegment (x, y0, y1);
+			VerticalSegment (x, y0, y1);
 
 			dirty = true;
 		}
 
-		public void GraphHorizontalLine (float graphY)
+		public void DrawHorizontalLine (float graphY)
 		{
 			int y = Graph2PixelY (graphY);
 
-			PixelHorizontalLine (y);
+			DrawHorizontalSegment (y, graphRect.xMin, graphRect.xMax);
 
 			dirty = true;
 		}
 
-		public void GraphVerticalLine (float graphX)
+		public void DrawVerticalLine (float graphX)
 		{
 			int x = Graph2PixelX (graphX);
 
-			PixelVerticalLine (x);
+			DrawVerticalSegment (x, graphRect.yMin, graphRect.yMax);
 
 			dirty = true;
 		}
 
-		public void GraphGrid (float graphStepX, float graphStepY)
+		public void DrawGrid (float graphStepX, float graphStepY)
 		{
 			for (float x = graphRect.xMin + graphStepX; x < graphRect.xMax; x += graphStepX) {
-				GraphVerticalLine (x);
+				DrawVerticalLine (x);
 			}
 
 			for (float y = graphRect.yMin + graphStepY; y < graphRect.yMax; y += graphStepY) {
-				GraphHorizontalLine (y);
+				DrawHorizontalLine (y);
 			}
 
 			dirty = true;
 		}
 
-		public void GraphRect (float graphX, float graphY, float graphWidth, float graphHeight)
+		public void DrawCross (float graphX, float graphY, int pixelRadiusX = 1, int pixelRadiusY = 1)
+		{
+			int centerX = Graph2PixelX (graphX);
+			int centerY = Graph2PixelY (graphY);
+
+			HorizontalSegment (centerY, centerX - pixelRadiusX, centerX + pixelRadiusX);
+			VerticalSegment (centerX, centerY - pixelRadiusX, centerY + pixelRadiusY);
+
+			dirty = true;
+		}
+
+		public void DrawRect (float graphX, float graphY, float graphWidth, float graphHeight)
+		{
+			int x0 = Graph2PixelX (graphX);
+			int y0 = Graph2PixelY (graphY);
+			int x1 = Graph2PixelX (graphX + graphWidth);
+			int y1 = Graph2PixelY (graphY + graphHeight);
+
+			HorizontalSegment (y0, x0, x1);
+			HorizontalSegment (y1, x0, x1);
+			VerticalSegment (x0, y0, y1);
+			VerticalSegment (x1, y0, y1);
+
+			dirty = true;
+		}
+
+		public void FillRect (float graphX, float graphY, float graphWidth, float graphHeight)
 		{
 			int x0 = Graph2PixelX (graphX);
 			int y0 = Graph2PixelY (graphY);
@@ -303,17 +349,39 @@ namespace Toolkit.Textures
 			int y1 = Graph2PixelY (graphY + graphHeight);
 
 			for (int x = x0; x <= x1; x++) {
-				PixelVerticalSegment (x, y0, y1);
+				VerticalSegment (x, y0, y1);
 			}
 
 			for (int y = y0; y <= y1; y++) {
-				PixelHorizontalSegment (y, x0, x1);
+				HorizontalSegment (y, x0, x1);
 			}
 
 			dirty = true;
 		}
 
-		public void GraphFunction (Func<float, float> function, float graphX0, float graphX1)
+		public void DrawCircle (float graphCenterX, float graphCenterY, int pixelRadius = 1)
+		{
+			int centerX = Graph2PixelX (graphCenterX);
+			int centerY = Graph2PixelY (graphCenterY);
+
+			Ellipse (centerX, centerY, pixelRadius, pixelRadius);
+
+			dirty = true;
+		}
+
+		public void DrawEllipse (float graphCenterX, float graphCenterY, int graphRadiusX, int graphRadiusY)
+		{
+			int centerX = Graph2PixelX (graphCenterX);
+			int centerY = Graph2PixelY (graphCenterY);
+			int radiusX = Graph2PixelWidth (graphRadiusX);
+			int radiusY = Graph2PixelWidth (graphRadiusY);
+
+			Ellipse (centerX, centerY, radiusX, radiusY);
+
+			dirty = true;
+		}
+
+		public void DrawFunction (Func<float, float> function, float graphX0, float graphX1)
 		{
 			step = 0;
 			
@@ -329,9 +397,9 @@ namespace Toolkit.Textures
 			dirty = true;
 		}
 
-		public void GraphFunction (Func<float, float> function)
+		public void DrawFunction (Func<float, float> function)
 		{
-			GraphFunction (function, graphRect.xMin, graphRect.xMax);
+			DrawFunction (function, graphRect.xMin, graphRect.xMax);
 
 			dirty = true;
 		}
