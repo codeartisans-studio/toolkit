@@ -8,12 +8,12 @@ namespace Toolkit.Utilities
 	[Serializable]
 	public struct CurvePoint
 	{
-		public int x;
-		public int y;
+		public float x;
+		public float y;
 		public float inTangent;
 		public float outTangent;
 
-		public CurvePoint (int x, int y, float inTangent = 0, float outTangent = 0)
+		public CurvePoint (float x, float y, float inTangent = 0, float outTangent = 0)
 		{
 			this.x = x;
 			this.y = y;
