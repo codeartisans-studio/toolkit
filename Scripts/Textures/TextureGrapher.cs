@@ -212,6 +212,12 @@ namespace Toolkit.Textures
 		{
 			step = 0;
 
+			if (pixelX1 < pixelX0) {
+				int swap = pixelX1;
+				pixelX1 = pixelX0;
+				pixelX0 = swap;
+			}
+
 			for (int x = pixelX0; x < pixelX1; x++) {
 				if (CheckPixel ()) {
 					SetPixel (x, pixelY);
@@ -224,6 +230,12 @@ namespace Toolkit.Textures
 		public void VerticalSegment (int pixelX, int pixelY0, int pixelY1)
 		{
 			step = 0;
+
+			if (pixelY1 < pixelY0) {
+				int swap = pixelY1;
+				pixelY1 = pixelY0;
+				pixelY0 = swap;
+			}
 
 			for (int y = pixelY0; y < pixelY1; y++) {
 				if (CheckPixel ()) {
@@ -289,6 +301,11 @@ namespace Toolkit.Textures
 
 		public void DrawGrid (float graphStepX, float graphStepY)
 		{
+			if (graphStepX < Pixel2GraphX (2))
+				graphStepX = Pixel2GraphX (2);
+			if (graphStepY < Pixel2GraphY (2))
+				graphStepY = Pixel2GraphY (2);
+			
 			for (float x = (int)(graphRect.xMin / graphStepX) * graphStepX; x < graphRect.xMax; x += graphStepX) {
 				DrawVerticalLine (x);
 			}
@@ -333,8 +350,10 @@ namespace Toolkit.Textures
 			int x1 = Graph2PixelX (graphX + graphWidth);
 			int y1 = Graph2PixelY (graphY + graphHeight);
 
-			for (int x = x0; x < x1; x++) {
-				VerticalSegment (x, y0, y1);
+			if (y1 < y0) {
+				int swap = y1;
+				y1 = y0;
+				y0 = swap;
 			}
 
 			for (int y = y0; y < y1; y++) {
