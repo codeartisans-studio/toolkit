@@ -15,7 +15,7 @@ namespace Toolkit.Editor
 		}
 
 		[MenuItem ("Tools/Transform Tools/Align With Ground %t")]
-		static void AlignWithGround ()
+		private static void AlignWithGround ()
 		{
 			Transform[] transforms = Selection.transforms;
 			foreach (Transform myTransform in transforms) {
