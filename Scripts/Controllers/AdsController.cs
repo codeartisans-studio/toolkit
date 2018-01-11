@@ -11,8 +11,8 @@ namespace Toolkit.Controllers
 	[AddComponentMenu ("Toolkit/Controllers/AdsController")]
 	public class AdsController : Singleton<AdsController>
 	{
-		public const string placementIdVideo = "video";
-		public const string placementIdRewardedVideo = "rewardedVideo";
+		public const string PlacementIdVideo = "video";
+		public const string PlacementIdRewardedVideo = "rewardedVideo";
 
 		public int rewardCoins = 200;
 
@@ -26,12 +26,12 @@ namespace Toolkit.Controllers
 
 		public void ShowVideo (Action<ShowResult> resultCallback)
 		{
-			Show (placementIdVideo, resultCallback);
+			Show (PlacementIdVideo, resultCallback);
 		}
 
 		public void ShowRewardedVideo (Action<ShowResult> resultCallback)
 		{
-			Show (placementIdRewardedVideo, resultCallback);
+			Show (PlacementIdRewardedVideo, resultCallback);
 		}
 
 		public bool IsReady (string placementId)
@@ -41,12 +41,12 @@ namespace Toolkit.Controllers
 
 		public bool IsVideoReady ()
 		{
-			return IsReady (placementIdVideo);
+			return IsReady (PlacementIdVideo);
 		}
 
 		public bool IsRewardedVideoReady ()
 		{
-			return IsReady (placementIdRewardedVideo);
+			return IsReady (PlacementIdRewardedVideo);
 		}
 	}
 }
