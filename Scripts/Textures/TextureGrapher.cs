@@ -22,8 +22,8 @@ namespace Toolkit.Textures
 		public int dashInterval = 5;
 		public bool alphaBlend = true;
 
-		private Rect _graphRect;
-		private Color _color;
+		private Rect graphRect;
+		private Color color;
 
 		private Color[] pixels;
 		private Color[] buffer;
@@ -40,7 +40,7 @@ namespace Toolkit.Textures
 		{
 			this.pixelWidth = pixelWidth;
 			this.pixelHeight = pixelHeight;
-			this.graphRect = graphRect;
+			this.GraphRect = graphRect;
 
 			texture = new Texture2D (pixelWidth, pixelHeight, TextureFormat.RGBA32, false);
 			pixels = new Color[pixelWidth * pixelHeight];
@@ -56,26 +56,26 @@ namespace Toolkit.Textures
 			
 		}
 
-		public Rect graphRect {
+		public Rect GraphRect {
 			get {
-				return _graphRect;
+				return graphRect;
 			}
 			set {
-				_graphRect = value;
+				graphRect = value;
 
-				scaleX = pixelWidth / _graphRect.width;
-				scaleY = pixelHeight / _graphRect.height;
+				scaleX = pixelWidth / graphRect.width;
+				scaleY = pixelHeight / graphRect.height;
 			}
 		}
 
-		public Color color {
+		public Color Color {
 			get {
-				return _color;
+				return color;
 			}
 			set {
-				_color = value;
+				color = value;
 
-				srcAlpha = _color.a;
+				srcAlpha = color.a;
 				dstAlpha = 1 - srcAlpha;
 			}
 		}
@@ -105,7 +105,7 @@ namespace Toolkit.Textures
 		public void Clear ()
 		{
 			for (int i = 0; i < pixels.Length; i++) {
-				pixels [i] = color;
+				pixels [i] = Color;
 			}
 
 			dirty = true;
@@ -142,12 +142,12 @@ namespace Toolkit.Textures
 		// pixel tp graph methods
 		public float Pixel2GraphX (int pixelX)
 		{
-			return graphRect.xMin + pixelX / scaleX;
+			return GraphRect.xMin + pixelX / scaleX;
 		}
 
 		public float Pixel2GraphY (int pixelY)
 		{
-			return graphRect.yMin + pixelY / scaleY;
+			return GraphRect.yMin + pixelY / scaleY;
 		}
 
 		public float Pixel2GraphWidth (int pixelWidth)
@@ -163,12 +163,12 @@ namespace Toolkit.Textures
 		// graph to pixel methods
 		public int Graph2PixelX (float graphX)
 		{
-			return Mathf.RoundToInt ((graphX - graphRect.xMin) * scaleX);
+			return Mathf.RoundToInt ((graphX - GraphRect.xMin) * scaleX);
 		}
 
 		public int Graph2PixelY (float graphY)
 		{
-			return Mathf.RoundToInt ((graphY - graphRect.yMin) * scaleY);
+			return Mathf.RoundToInt ((graphY - GraphRect.yMin) * scaleY);
 		}
 
 		public int Graph2PixelWidth (float graphWidth)
@@ -185,10 +185,10 @@ namespace Toolkit.Textures
 		public Color AlphaBlend (Color dst)
 		{
 			return new Color (
-				color.r * srcAlpha + dst.r * dstAlpha, 
-				color.g * srcAlpha + dst.g * dstAlpha,
-				color.b * srcAlpha + dst.b * dstAlpha,
-				color.a * srcAlpha + dst.a * dstAlpha
+				Color.r * srcAlpha + dst.r * dstAlpha, 
+				Color.g * srcAlpha + dst.g * dstAlpha,
+				Color.b * srcAlpha + dst.b * dstAlpha,
+				Color.a * srcAlpha + dst.a * dstAlpha
 			);
 		}
 
@@ -202,7 +202,7 @@ namespace Toolkit.Textures
 			if (pixelX >= 0 && pixelX < texture.width && pixelY >= 0 && pixelY < texture.height) {
 				int i = pixelY * texture.width + pixelX;
 
-				pixels [i] = alphaBlend ? AlphaBlend (pixels [i]) : color;
+				pixels [i] = alphaBlend ? AlphaBlend (pixels [i]) : Color;
 
 				dirty = true;
 			}
@@ -287,14 +287,14 @@ namespace Toolkit.Textures
 
 		public void DrawHorizontalLine (float graphY)
 		{
-			DrawHorizontalSegment (graphY, graphRect.xMin, graphRect.xMax);
+			DrawHorizontalSegment (graphY, GraphRect.xMin, GraphRect.xMax);
 
 			dirty = true;
 		}
 
 		public void DrawVerticalLine (float graphX)
 		{
-			DrawVerticalSegment (graphX, graphRect.yMin, graphRect.yMax);
+			DrawVerticalSegment (graphX, GraphRect.yMin, GraphRect.yMax);
 
 			dirty = true;
 		}
@@ -306,11 +306,11 @@ namespace Toolkit.Textures
 			if (graphStepY < Pixel2GraphY (2))
 				graphStepY = Pixel2GraphY (2);
 			
-			for (float x = (int)(graphRect.xMin / graphStepX) * graphStepX; x < graphRect.xMax; x += graphStepX) {
+			for (float x = (int)(GraphRect.xMin / graphStepX) * graphStepX; x < GraphRect.xMax; x += graphStepX) {
 				DrawVerticalLine (x);
 			}
 
-			for (float y = (int)(graphRect.yMin / graphStepY) * graphStepY; y < graphRect.yMax; y += graphStepY) {
+			for (float y = (int)(GraphRect.yMin / graphStepY) * graphStepY; y < GraphRect.yMax; y += graphStepY) {
 				DrawHorizontalLine (y);
 			}
 
@@ -403,7 +403,7 @@ namespace Toolkit.Textures
 
 		public void DrawFunction (Func<float, float> function)
 		{
-			DrawFunction (function, graphRect.xMin, graphRect.xMax);
+			DrawFunction (function, GraphRect.xMin, GraphRect.xMax);
 
 			dirty = true;
 		}
