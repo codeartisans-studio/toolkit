@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Toolkit.Settings
 {
+	[AddComponentMenu ("Toolkit/Settings/AdditiveScenesSetting")]
 	public class AdditiveScenesSetting : MonoBehaviour
 	{
 		public string[] scenes;

@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Toolkit.Audios
 {
+	[AddComponentMenu ("Toolkit/Audios/AudioCollision")]
 	[RequireComponent (typeof(AudioSource))]
 	public class AudioCollision : MonoBehaviour
 	{

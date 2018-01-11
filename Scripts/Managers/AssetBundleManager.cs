@@ -5,10 +5,10 @@ using UnityEngine;
 
 namespace Toolkit.Managers
 {
-	static public class AssetBundleManager
+	public static class AssetBundleManager
 	{
 		// A dictionary to hold the AssetBundle references
-		static private Dictionary<string, AssetBundleRef> dictAssetBundleRefs;
+		private static Dictionary<string, AssetBundleRef> dictAssetBundleRefs;
 
 		static AssetBundleManager ()
 		{

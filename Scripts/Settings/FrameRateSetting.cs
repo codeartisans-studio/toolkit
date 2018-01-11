@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Toolkit.Settings
 {
+	[AddComponentMenu ("Toolkit/Settings/FrameRateSetting")]
 	public class FrameRateSetting : MonoBehaviour
 	{
 		public int targetFrameRate = 60;

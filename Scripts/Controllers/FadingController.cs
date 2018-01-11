@@ -9,6 +9,7 @@ using Toolkit.UI;
 
 namespace Toolkit.Controllers
 {
+	[AddComponentMenu ("Toolkit/Controllers/FadingController")]
 	[RequireComponent (typeof(Animator))]
 	public class FadingController : Singleton<FadingController>
 	{

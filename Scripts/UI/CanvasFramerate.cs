@@ -8,6 +8,7 @@ namespace Toolkit.UI
 	// An FPS counter.
 	// It calculates frames/second over each updateInterval,
 	// so the display does not keep changing wildly.
+	[AddComponentMenu ("Toolkit/UI/CanvasFramerate")]
 	[RequireComponent (typeof(Canvas))]
 	public class CanvasFramerate : MonoBehaviour
 	{

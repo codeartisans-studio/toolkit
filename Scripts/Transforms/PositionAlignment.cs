@@ -5,6 +5,7 @@ using Toolkit.Cameras;
 
 namespace Toolkit.Transforms
 {
+	[AddComponentMenu ("Toolkit/Transforms/PositionAlignment")]
 	public class PositionAlignment : MonoBehaviour
 	{
 		public SpriteAlignment alignment = SpriteAlignment.Center;

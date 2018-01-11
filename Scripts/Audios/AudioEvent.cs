@@ -4,6 +4,7 @@ using UnityEngine;
 
 namespace Toolkit.Audios
 {
+	[AddComponentMenu ("Toolkit/Audios/AudioEvent")]
 	[RequireComponent (typeof(AudioSource))]
 	public class AudioEvent : MonoBehaviour
 	{

@@ -5,6 +5,7 @@ using UnityEngine.Audio;
 
 namespace Toolkit.Settings
 {
+	[AddComponentMenu ("Toolkit/Settings/DefaultValueSetting")]
 	public class DefaultValueSetting : MonoBehaviour
 	{
 		public float defaultTimeScale = 1f;

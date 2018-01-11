@@ -8,6 +8,7 @@ using Toolkit;
 
 namespace Toolkit.Controllers
 {
+	[AddComponentMenu ("Toolkit/Controllers/AdsController")]
 	public class AdsController : Singleton<AdsController>
 	{
 		public const string placementIdVideo = "video";

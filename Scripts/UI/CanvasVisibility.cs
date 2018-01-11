@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Toolkit.UI
 {
+	[AddComponentMenu ("Toolkit/UI/CanvasVisibility")]
 	[RequireComponent (typeof(Canvas))]
 	public class CanvasVisibility : MonoBehaviour
 	{
