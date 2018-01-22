@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using Toolkit.Attributes;
+using Toolkit.Structs;
 
 namespace Toolkit.Editor
 {
@@ -18,7 +19,7 @@ namespace Toolkit.Editor
 			// First get the attribute since it contains the range for the slider
 			RangeLimitAttribute range = attribute as RangeLimitAttribute;
 
-			if (property.type == "Range") {
+			if (property.type == typeof(Range).Name) {
 				SerializedProperty minValue = property.FindPropertyRelative ("minValue");
 				SerializedProperty maxValue = property.FindPropertyRelative ("maxValue");
 
