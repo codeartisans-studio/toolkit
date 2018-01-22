@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Toolkit.Audios
 {
-	[AddComponentMenu ("Toolkit/Audios/AudioEvent")]
+	[AddComponentMenu ("Toolkit/Audios/AudioAnimationEvent")]
 	[RequireComponent (typeof(AudioSource))]
-	public class AudioEvent : MonoBehaviour
+	public class AudioAnimationEvent : MonoBehaviour
 	{
 		private AudioSource audioSource;
 
