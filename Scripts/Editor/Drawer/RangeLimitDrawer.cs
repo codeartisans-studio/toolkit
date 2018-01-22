@@ -10,7 +10,7 @@ namespace Toolkit.Editor
 	public class RangeLimitDrawer : PropertyDrawer
 	{
 		private const float FieldWidth = 30f;
-		private const float SliderMargin = 5f;
+		private const float SliderPadding = 5f;
 
 		// Draw the property inside the given rect
 		public override void OnGUI (Rect position, SerializedProperty property, GUIContent label)
@@ -29,7 +29,7 @@ namespace Toolkit.Editor
 
 				// Calculate rects
 				Rect minRect = new Rect (position.x, position.y, FieldWidth, position.height);
-				Rect sliderRect = new Rect (position.x + (FieldWidth + SliderMargin), position.y, position.width - (FieldWidth + SliderMargin) * 2, position.height);
+				Rect sliderRect = new Rect (position.x + (FieldWidth + SliderPadding), position.y, position.width - (FieldWidth + SliderPadding) * 2, position.height);
 				Rect maxRect = new Rect (position.x + position.width - FieldWidth, position.y, FieldWidth, position.height);
 
 				EditorGUI.BeginChangeCheck ();
