@@ -13,12 +13,15 @@ namespace Toolkit.Editor
 		private const float FieldWidth = 30f;
 		private const float SliderPadding = 5f;
 
+		private RangeLimitAttribute RangeLimit {
+			get {
+				return attribute as RangeLimitAttribute;
+			}
+		}
+
 		// Draw the property inside the given rect
 		public override void OnGUI (Rect position, SerializedProperty property, GUIContent label)
 		{
-			// First get the attribute since it contains the range for the slider
-			RangeLimitAttribute range = attribute as RangeLimitAttribute;
-
 			if (property.type == typeof(Range).Name) {
 				SerializedProperty minValue = property.FindPropertyRelative ("minValue");
 				SerializedProperty maxValue = property.FindPropertyRelative ("maxValue");
@@ -35,9 +38,9 @@ namespace Toolkit.Editor
 
 				EditorGUI.BeginChangeCheck ();
 
-				min = Mathf.Clamp (EditorGUI.FloatField (minRect, min), range.minLimit, range.maxLimit);
-				EditorGUI.MinMaxSlider (sliderRect, ref min, ref max, range.minLimit, range.maxLimit);
-				max = Mathf.Clamp (EditorGUI.FloatField (maxRect, max), range.minLimit, range.maxLimit);
+				min = Mathf.Clamp (EditorGUI.FloatField (minRect, min), RangeLimit.minLimit, RangeLimit.maxLimit);
+				EditorGUI.MinMaxSlider (sliderRect, ref min, ref max, RangeLimit.minLimit, RangeLimit.maxLimit);
+				max = Mathf.Clamp (EditorGUI.FloatField (maxRect, max), RangeLimit.minLimit, RangeLimit.maxLimit);
 
 				if (EditorGUI.EndChangeCheck ()) {
 					minValue.floatValue = min;

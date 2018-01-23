@@ -6,8 +6,8 @@ namespace Toolkit.Attributes
 {
 	public class RangeLimitAttribute : PropertyAttribute
 	{
-		public readonly float minLimit;
-		public readonly float maxLimit;
+		public float minLimit;
+		public float maxLimit;
 
 		public RangeLimitAttribute (float minLimit, float maxLimit)
 		{
