@@ -7,7 +7,7 @@ using Random = UnityEngine.Random;
 
 namespace Toolkit.Audios
 {
-	[CreateAssetMenu (menuName = "Audio Events/RandomAudioEvent")]
+	[CreateAssetMenu (menuName = "Toolkit/Audio Events/Random Audio Event")]
 	public class RandomAudioEvent : AudioEvent
 	{
 		public AudioClip[] clips;
