@@ -94,7 +94,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13a4da67f39b8438bb36983719680e2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  baseResolution: {x: 9.6, y: 6.4}
+  baseResolution: {x: 960, y: 640}
 --- !u!124 &12471482
 Behaviour:
   m_ObjectHideFlags: 1
