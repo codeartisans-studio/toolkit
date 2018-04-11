@@ -6,12 +6,12 @@ using UnityEngine;
 namespace Toolkit.Structs
 {
 	[Serializable]
-	public struct Range
+	public struct Range<T>
 	{
-		public float minValue;
-		public float maxValue;
+		public T minValue;
+		public T maxValue;
 
-		public Range (float minValue, float maxValue)
+		public Range (T minValue, T maxValue)
 		{
 			this.minValue = minValue;
 			this.maxValue = maxValue;

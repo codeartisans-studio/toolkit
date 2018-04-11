@@ -22,7 +22,7 @@ namespace Toolkit.Editor
 		// Draw the property inside the given rect
 		public override void OnGUI (Rect position, SerializedProperty property, GUIContent label)
 		{
-			if (property.type == typeof(Range).Name) {
+			if (property.type == typeof(Range<float>).Name) {
 				SerializedProperty minValue = property.FindPropertyRelative ("minValue");
 				SerializedProperty maxValue = property.FindPropertyRelative ("maxValue");
 
