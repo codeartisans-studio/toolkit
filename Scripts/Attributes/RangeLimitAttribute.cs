@@ -4,12 +4,24 @@ using UnityEngine;
 
 namespace Toolkit.Attributes
 {
-	public class RangeLimitAttribute : PropertyAttribute
+	public class RangeIntLimitAttribute : PropertyAttribute
+	{
+		public int minLimit;
+		public int maxLimit;
+
+		public RangeIntLimitAttribute (int minLimit, int maxLimit)
+		{
+			this.minLimit = minLimit;
+			this.maxLimit = maxLimit;
+		}
+	}
+
+	public class RangeFloatLimitAttribute : PropertyAttribute
 	{
 		public float minLimit;
 		public float maxLimit;
 
-		public RangeLimitAttribute (float minLimit, float maxLimit)
+		public RangeFloatLimitAttribute (float minLimit, float maxLimit)
 		{
 			this.minLimit = minLimit;
 			this.maxLimit = maxLimit;
