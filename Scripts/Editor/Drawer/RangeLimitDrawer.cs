@@ -22,7 +22,7 @@ namespace Toolkit.Editor
 		// Draw the property inside the given rect
 		public override void OnGUI (Rect position, SerializedProperty property, GUIContent label)
 		{
-			if (property.type == typeof(Range<float>).Name) {
+			if (property.type == typeof(RangeFloat).Name) {
 				SerializedProperty minValue = property.FindPropertyRelative ("minValue");
 				SerializedProperty maxValue = property.FindPropertyRelative ("maxValue");
 
@@ -47,7 +47,7 @@ namespace Toolkit.Editor
 					maxValue.floatValue = max;
 				}
 			} else {
-				EditorGUI.LabelField (position, label.text, "Use RangeLimit with Range.");
+				EditorGUI.LabelField (position, label.text, "Use RangeLimit with RangeFloat.");
 			}
 		}
 	}

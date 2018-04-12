@@ -12,8 +12,8 @@ namespace Toolkit.Audios
 	{
 		public AudioClip[] clips;
 
-		public Range<float> volume = new Range<float> (1f, 1f);
-		public Range<float> pitch = new Range<float> (1f, 1f);
+		public RangeFloat volume = new RangeFloat (1f, 1f);
+		public RangeFloat pitch = new RangeFloat (1f, 1f);
 
 		public override void Play (AudioSource source)
 		{
