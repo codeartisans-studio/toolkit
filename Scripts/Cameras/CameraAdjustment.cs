@@ -8,7 +8,7 @@ namespace Toolkit.Cameras
 	[RequireComponent (typeof(Camera))]
 	public class CameraAdjustment : MonoBehaviour
 	{
-		public Vector2 baseResolution = new Vector2 (640f, 960f);
+		public Vector2 baseResolution = new Vector2 (6.4f, 9.6f);
 	
 		// Use this for initialization
 		void Start ()
