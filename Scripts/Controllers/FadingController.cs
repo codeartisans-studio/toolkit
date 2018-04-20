@@ -23,21 +23,25 @@ namespace Toolkit.Controllers
 
 		void Start ()
 		{
-			FadeIn (null);
+			FadeIn ();
 		}
 
-		public void FadeIn (Action callback)
+		public void FadeIn (Action callback = null)
 		{
 			anim.SetTrigger ("FadeIn");
 
-			action = callback;
+			if (callback != null) {
+				action = callback;
+			}
 		}
 
-		public void FadeOut (Action callback)
+		public void FadeOut (Action callback = null)
 		{
 			anim.SetTrigger ("FadeOut");
 
-			action = callback;
+			if (callback != null) {
+				action = callback;
+			}
 		}
 
 		// animation clip callback
