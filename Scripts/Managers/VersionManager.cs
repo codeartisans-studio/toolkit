@@ -4,8 +4,8 @@ using UnityEngine;
 
 namespace Toolkit.Managers
 {
-	public static class VersionManager
-	{
+    public static class VersionManager
+    {
 
-	}
+    }
 }

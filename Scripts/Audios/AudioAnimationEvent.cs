@@ -4,20 +4,20 @@ using UnityEngine;
 
 namespace Toolkit.Audios
 {
-	[AddComponentMenu ("Toolkit/Audios/AudioAnimationEvent")]
-	[RequireComponent (typeof(AudioSource))]
-	public class AudioAnimationEvent : MonoBehaviour
-	{
-		private AudioSource audioSource;
+    [AddComponentMenu("Toolkit/Audios/AudioAnimationEvent")]
+    [RequireComponent(typeof(AudioSource))]
+    public class AudioAnimationEvent : MonoBehaviour
+    {
+        private AudioSource audioSource;
 
-		void Awake ()
-		{
-			audioSource = GetComponent<AudioSource> ();
-		}
+        void Awake()
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
 
-		public void PlayAudio ()
-		{
-			audioSource.Play ();
-		}
-	}
+        public void PlayAudio()
+        {
+            audioSource.Play();
+        }
+    }
 }
