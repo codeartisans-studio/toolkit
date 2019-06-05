@@ -27,10 +27,10 @@ namespace Toolkit.Editor
             BuildPipeline.BuildAssetBundles("Assets/AssetBundles/iOS", BuildAssetBundleOptions.None, BuildTarget.iOS);
         }
 
-        [MenuItem("Assets/Build AssetBundles/StandaloneOSXUniversal")]
-        private static void BuildAssetBundlesStandaloneOSXUniversal()
+        [MenuItem("Assets/Build AssetBundles/StandaloneOS")]
+        private static void BuildAssetBundlesStandaloneOSX()
         {
-            BuildPipeline.BuildAssetBundles("Assets/AssetBundles/StandaloneOSXUniversal", BuildAssetBundleOptions.None, BuildTarget.StandaloneOSX);
+            BuildPipeline.BuildAssetBundles("Assets/AssetBundles/StandaloneOSX", BuildAssetBundleOptions.None, BuildTarget.StandaloneOSX);
         }
     }
 }
