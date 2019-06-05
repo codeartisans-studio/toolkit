@@ -30,7 +30,7 @@ namespace Toolkit.Editor
         [MenuItem("Assets/Build AssetBundles/StandaloneOSXUniversal")]
         private static void BuildAssetBundlesStandaloneOSXUniversal()
         {
-            BuildPipeline.BuildAssetBundles("Assets/AssetBundles/StandaloneOSXUniversal", BuildAssetBundleOptions.None, BuildTarget.StandaloneOSXUniversal);
+            BuildPipeline.BuildAssetBundles("Assets/AssetBundles/StandaloneOSXUniversal", BuildAssetBundleOptions.None, BuildTarget.StandaloneOSX);
         }
     }
 }
