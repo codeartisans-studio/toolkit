@@ -8,46 +8,46 @@ using Toolkit;
 
 namespace Toolkit.Controllers
 {
-	[AddComponentMenu ("Toolkit/Controllers/AdsController")]
-	public class AdsController : Singleton<AdsController>
-	{
-		public const string PlacementIdVideo = "video";
-		public const string PlacementIdRewardedVideo = "rewardedVideo";
+    [AddComponentMenu("Toolkit/Controllers/AdsController")]
+    public class AdsController : Singleton<AdsController>
+    {
+        public const string PlacementIdVideo = "video";
+        public const string PlacementIdRewardedVideo = "rewardedVideo";
 
-		public int rewardCoins = 200;
+        public int rewardCoins = 200;
 
-		public void Show (string placementId, Action<ShowResult> resultCallback)
-		{
-			ShowOptions options = new ShowOptions ();
-			options.resultCallback = resultCallback;
+        public void Show(string placementId, Action<ShowResult> resultCallback)
+        {
+            ShowOptions options = new ShowOptions();
+            options.resultCallback = resultCallback;
 
-			Advertisement.Show (placementId, options);
-		}
+            Advertisement.Show(placementId, options);
+        }
 
-		public void ShowVideo (Action<ShowResult> resultCallback)
-		{
-			Show (PlacementIdVideo, resultCallback);
-		}
+        public void ShowVideo(Action<ShowResult> resultCallback)
+        {
+            Show(PlacementIdVideo, resultCallback);
+        }
 
-		public void ShowRewardedVideo (Action<ShowResult> resultCallback)
-		{
-			Show (PlacementIdRewardedVideo, resultCallback);
-		}
+        public void ShowRewardedVideo(Action<ShowResult> resultCallback)
+        {
+            Show(PlacementIdRewardedVideo, resultCallback);
+        }
 
-		public bool IsReady (string placementId)
-		{
-			return Advertisement.IsReady (placementId);
-		}
+        public bool IsReady(string placementId)
+        {
+            return Advertisement.IsReady(placementId);
+        }
 
-		public bool IsVideoReady ()
-		{
-			return IsReady (PlacementIdVideo);
-		}
+        public bool IsVideoReady()
+        {
+            return IsReady(PlacementIdVideo);
+        }
 
-		public bool IsRewardedVideoReady ()
-		{
-			return IsReady (PlacementIdRewardedVideo);
-		}
-	}
+        public bool IsRewardedVideoReady()
+        {
+            return IsReady(PlacementIdRewardedVideo);
+        }
+    }
 }
 #endif

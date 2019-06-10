@@ -5,41 +5,42 @@ using UnityEngine;
 
 namespace Toolkit.UI
 {
-	[AddComponentMenu ("Toolkit/UI/CanvasVisibility")]
-	[RequireComponent (typeof(Canvas))]
-	public class CanvasVisibility : MonoBehaviour
-	{
-		public GameObject board;
+    [AddComponentMenu("Toolkit/UI/CanvasVisibility")]
+    [RequireComponent(typeof(Canvas))]
+    public class CanvasVisibility : MonoBehaviour
+    {
+        public GameObject board;
 
-		private bool showing;
-		private Action action;
+        private bool showing;
+        private Action action;
 
-		public void Show (Action callback)
-		{
-			Show ();
+        public void Show(Action callback)
+        {
+            Show();
 
-			showing = true;
+            showing = true;
 
-			action = callback;
-		}
+            action = callback;
+        }
 
-		public void Show ()
-		{
-			board.SetActive (true);
-		}
+        public void Show()
+        {
+            board.SetActive(true);
+        }
 
-		public void Hide ()
-		{
-			board.SetActive (false);
-		}
+        public void Hide()
+        {
+            board.SetActive(false);
+        }
 
-		public void Back ()
-		{
-			if (showing) {
-				showing = false;
+        public void Back()
+        {
+            if (showing)
+            {
+                showing = false;
 
-				action ();
-			}
-		}
-	}
+                action();
+            }
+        }
+    }
 }

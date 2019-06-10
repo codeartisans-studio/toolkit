@@ -5,34 +5,34 @@ using UnityEngine;
 
 namespace Toolkit.Utilities
 {
-	public static class InvokeUtility
-	{
-		public static IEnumerator WaitForFixedUpdate (Action action)
-		{
-			yield return new WaitForFixedUpdate ();
+    public static class InvokeUtility
+    {
+        public static IEnumerator WaitForFixedUpdate(Action action)
+        {
+            yield return new WaitForFixedUpdate();
 
-			action ();
-		}
+            action();
+        }
 
-		public static IEnumerator WaitForNextFrame (Action action)
-		{
-			yield return null;
+        public static IEnumerator WaitForNextFrame(Action action)
+        {
+            yield return null;
 
-			action ();
-		}
+            action();
+        }
 
-		public static IEnumerator WaitForSeconds (Action action, float seconds)
-		{
-			yield return new WaitForSeconds (seconds);
+        public static IEnumerator WaitForSeconds(Action action, float seconds)
+        {
+            yield return new WaitForSeconds(seconds);
 
-			action ();
-		}
+            action();
+        }
 
-		public static IEnumerator WaitForEndOfFrame (Action action)
-		{
-			yield return new WaitForEndOfFrame ();
+        public static IEnumerator WaitForEndOfFrame(Action action)
+        {
+            yield return new WaitForEndOfFrame();
 
-			action ();
-		}
-	}
+            action();
+        }
+    }
 }

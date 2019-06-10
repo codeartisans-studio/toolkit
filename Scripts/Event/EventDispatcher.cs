@@ -1,11 +1,12 @@
-﻿using System.Collections;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace Toolkit.Managers
 {
-    public static class VersionManager
+    public static class EventDispatcher
     {
-
+        
     }
 }

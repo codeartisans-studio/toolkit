@@ -5,37 +5,38 @@ using UnityEngine.UI;
 
 namespace Toolkit.UI
 {
-	// An FPS counter.
-	// It calculates frames/second over each updateInterval,
-	// so the display does not keep changing wildly.
-	[AddComponentMenu ("Toolkit/UI/CanvasFramerate")]
-	[RequireComponent (typeof(Canvas))]
-	public class CanvasFramerate : MonoBehaviour
-	{
-		public Text fpsText;
+    // An FPS counter.
+    // It calculates frames/second over each updateInterval,
+    // so the display does not keep changing wildly.
+    [AddComponentMenu("Toolkit/UI/CanvasFramerate")]
+    [RequireComponent(typeof(Canvas))]
+    public class CanvasFramerate : MonoBehaviour
+    {
+        public Text fpsText;
 
-		public float updateInterval = 0.5f;
-		private double lastInterval;
-		private int frames = 0;
-		private float fps;
+        public float updateInterval = 0.5f;
+        private double lastInterval;
+        private int frames = 0;
+        private float fps;
 
-		void Start ()
-		{
-			lastInterval = Time.realtimeSinceStartup;
-			frames = 0;
-		}
+        void Start()
+        {
+            lastInterval = Time.realtimeSinceStartup;
+            frames = 0;
+        }
 
-		void Update ()
-		{
-			++frames;
-			float timeNow = Time.realtimeSinceStartup;
-			if (timeNow > lastInterval + updateInterval) {
-				fps = (float)(frames / (timeNow - lastInterval));
-				frames = 0;
-				lastInterval = timeNow;
+        void Update()
+        {
+            ++frames;
+            float timeNow = Time.realtimeSinceStartup;
+            if (timeNow > lastInterval + updateInterval)
+            {
+                fps = (float)(frames / (timeNow - lastInterval));
+                frames = 0;
+                lastInterval = timeNow;
 
-				fpsText.text = string.Format ("{0:F2} FPS", fps);
-			}
-		}
-	}
+                fpsText.text = string.Format("{0:F2} FPS", fps);
+            }
+        }
+    }
 }

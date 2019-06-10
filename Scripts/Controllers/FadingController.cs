@@ -9,63 +9,68 @@ using Toolkit.UI;
 
 namespace Toolkit.Controllers
 {
-	[AddComponentMenu ("Toolkit/Controllers/FadingController")]
-	[RequireComponent (typeof(Animator))]
-	public class FadingController : Singleton<FadingController>
-	{
-		private Animator anim;
-		private Action action;
+    [AddComponentMenu("Toolkit/Controllers/FadingController")]
+    [RequireComponent(typeof(Animator))]
+    public class FadingController : Singleton<FadingController>
+    {
+        private Animator anim;
+        private Action action;
 
-		void Awake ()
-		{
-			anim = GetComponent<Animator> ();
-		}
+        void Awake()
+        {
+            anim = GetComponent<Animator>();
+        }
 
-		void Start ()
-		{
-			FadeIn ();
-		}
+        void Start()
+        {
+            FadeIn();
+        }
 
-		public void FadeIn (Action callback = null)
-		{
-			anim.SetTrigger ("FadeIn");
+        public void FadeIn(Action callback = null)
+        {
+            anim.SetTrigger("FadeIn");
 
-			if (callback != null) {
-				action = callback;
-			}
-		}
+            if (callback != null)
+            {
+                action = callback;
+            }
+        }
 
-		public void FadeOut (Action callback = null)
-		{
-			anim.SetTrigger ("FadeOut");
+        public void FadeOut(Action callback = null)
+        {
+            anim.SetTrigger("FadeOut");
 
-			if (callback != null) {
-				action = callback;
-			}
-		}
+            if (callback != null)
+            {
+                action = callback;
+            }
+        }
 
-		// animation clip callback
-		public void Done ()
-		{
-			if (action != null) {
-				action ();
+        // animation clip callback
+        public void Done()
+        {
+            if (action != null)
+            {
+                action();
 
-				action = null;
-			}
-		}
+                action = null;
+            }
+        }
 
-		public void LoadScene (int buildIndex, LoadSceneMode mode = LoadSceneMode.Single)
-		{
-			FadeOut (() => {
-				SceneManager.LoadScene (buildIndex, mode);
-			});
-		}
+        public void LoadScene(int buildIndex, LoadSceneMode mode = LoadSceneMode.Single)
+        {
+            FadeOut(() =>
+            {
+                SceneManager.LoadScene(buildIndex, mode);
+            });
+        }
 
-		public void LoadScene (string scene, LoadSceneMode mode = LoadSceneMode.Single)
-		{
-			FadeOut (() => {
-				SceneManager.LoadScene (scene, mode);
-			});
-		}
-	}
+        public void LoadScene(string scene, LoadSceneMode mode = LoadSceneMode.Single)
+        {
+            FadeOut(() =>
+            {
+                SceneManager.LoadScene(scene, mode);
+            });
+        }
+    }
 }
