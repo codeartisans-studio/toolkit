@@ -63,9 +63,31 @@ namespace Toolkit.Controllers
         }
 
         // put byte array
-        private IEnumerator PutEnumerator(string uri, byte[] data, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
+        private IEnumerator PutEnumerator(string uri, byte[] bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
         {
-            UnityWebRequest req = UnityWebRequest.Put(uri, data);
+            UnityWebRequest req = UnityWebRequest.Put(uri, bodyData);
+
+            SetRequestHeaders(req, header);
+
+            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+        }
+
+        // put string
+        private IEnumerator PutEnumerator(string uri, string bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
+        {
+            UnityWebRequest req = UnityWebRequest.Put(uri, bodyData);
+
+            SetRequestHeaders(req, header);
+
+            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+        }
+
+        // put form
+        private IEnumerator PutEnumerator(string uri, WWWForm form, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
+        {
+            byte[] bodyData = System.Text.Encoding.UTF8.GetBytes(form.ToString());
+
+            UnityWebRequest req = UnityWebRequest.Put(uri, bodyData);
 
             SetRequestHeaders(req, header);
 
@@ -73,9 +95,19 @@ namespace Toolkit.Controllers
         }
 
         // post byte array
-        private IEnumerator PostEnumerator(string uri, byte[] data, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
+        private IEnumerator PostEnumerator(string uri, byte[] bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
         {
-            UnityWebRequest req = new UnityWebRequest(uri, "POST", new DownloadHandlerBuffer(), new UploadHandlerRaw(data));
+            UnityWebRequest req = new UnityWebRequest(uri, UnityWebRequest.kHttpVerbPOST, new DownloadHandlerBuffer(), new UploadHandlerRaw(bodyData));
+
+            SetRequestHeaders(req, header);
+
+            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+        }
+
+        // post string
+        private IEnumerator PostEnumerator(string uri, string bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
+        {
+            UnityWebRequest req = UnityWebRequest.Post(uri, bodyData);
 
             SetRequestHeaders(req, header);
 
@@ -103,55 +135,65 @@ namespace Toolkit.Controllers
         }
 
         // put byte array
-        public void Put(string uri, byte[] data, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
+        public void Put(string uri, byte[] bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
         {
-            StartCoroutine(PutEnumerator(uri, data, successAction, errorAction, header));
+            StartCoroutine(PutEnumerator(uri, bodyData, successAction, errorAction, header));
         }
 
-        // put json string
-        public void Put(string uri, string json, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
+        // put string
+        public void Put(string uri, string bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
         {
-            if (header == null)
-                header = new Dictionary<string, string>();
-
-            header["Content-Type"] = "application/json";
-
-            byte[] data = System.Text.Encoding.UTF8.GetBytes(json);
-
-            StartCoroutine(PutEnumerator(uri, data, successAction, errorAction, header));
+            StartCoroutine(PutEnumerator(uri, bodyData, successAction, errorAction, header));
         }
 
         // put form
         public void Put(string uri, WWWForm form, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
         {
-            byte[] data = System.Text.Encoding.UTF8.GetBytes(form.ToString());
-
-            StartCoroutine(PutEnumerator(uri, data, successAction, errorAction, header));
+            StartCoroutine(PutEnumerator(uri, form, successAction, errorAction, header));
         }
 
-        // post byte array
-        public void Post(string uri, byte[] data, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
-        {
-            StartCoroutine(PostEnumerator(uri, data, successAction, errorAction, header));
-        }
-
-        // post json string
-        public void Post(string uri, string json, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
+        // put json string
+        public void PutJson(string uri, string json, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
         {
             if (header == null)
                 header = new Dictionary<string, string>();
 
             header["Content-Type"] = "application/json";
 
-            byte[] data = System.Text.Encoding.UTF8.GetBytes(json);
+            byte[] bodyData = System.Text.Encoding.UTF8.GetBytes(json);
 
-            StartCoroutine(PostEnumerator(uri, data, successAction, errorAction, header));
+            StartCoroutine(PutEnumerator(uri, bodyData, successAction, errorAction, header));
+        }
+
+        // post byte array
+        public void Post(string uri, byte[] bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
+        {
+            StartCoroutine(PostEnumerator(uri, bodyData, successAction, errorAction, header));
+        }
+
+        // post string
+        public void Post(string uri, string bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
+        {
+            StartCoroutine(PostEnumerator(uri, bodyData, successAction, errorAction, header));
         }
 
         // post form
         public void Post(string uri, WWWForm form, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
         {
             StartCoroutine(PostEnumerator(uri, form, successAction, errorAction, header));
+        }
+
+        // post json string
+        public void PostJson(string uri, string json, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
+        {
+            if (header == null)
+                header = new Dictionary<string, string>();
+
+            header["Content-Type"] = "application/json";
+
+            byte[] bodyData = System.Text.Encoding.UTF8.GetBytes(json);
+
+            StartCoroutine(PostEnumerator(uri, bodyData, successAction, errorAction, header));
         }
     }
 }
