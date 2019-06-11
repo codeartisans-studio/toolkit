@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -12,7 +12,7 @@ namespace Toolkit
         {
             if (instance == null)
             {
-                instance = FindObjectOfType(typeof(T)) as T;
+                instance = FindObjectOfType<T>();
                 Debug.AssertFormat(instance, "There needs to be one active [{0}] script on a GameObject in your scene.", typeof(T));
             }
 
