@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace Toolkit.UI
 {
+    [Obsolete("This is an obsolete class, use SingletonWindow instead")]
     [AddComponentMenu("Toolkit/UI/CanvasVisibility")]
     [RequireComponent(typeof(Canvas))]
     public class CanvasVisibility : MonoBehaviour
