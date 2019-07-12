@@ -28,7 +28,7 @@ namespace Toolkit.Controllers
             {
                 Debug.LogWarning(req.error);
 
-                if (successAction != null)
+                if (errorAction != null)
                 {
                     errorAction(req);
                 }
