@@ -26,7 +26,7 @@ namespace Toolkit.UI
             WindowsManager.Remove(board);
         }
 
-        public void Open(bool isCloseOthers = false)
+        public void Open(bool isCloseOthers = true)
         {
             if (isCloseOthers)
                 WindowsManager.CloseAll();
