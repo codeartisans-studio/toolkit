@@ -24,7 +24,7 @@ namespace Toolkit.Controllers
         {
             yield return req.SendWebRequest();
 
-            if (req.error != null)
+            if (req.isNetworkError)
             {
                 Debug.LogWarning(req.error);
 
