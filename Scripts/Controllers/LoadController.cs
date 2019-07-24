@@ -39,12 +39,12 @@ namespace Toolkit.Controllers
             while (!asyncOperation.isDone)
             {
                 toProgress = asyncOperation.progress * 100;
-                // Debug.Log("Loading progress: " + asyncOperation.progress);
+                Debug.Log("Loading progress: " + asyncOperation.progress);
 
                 while (showProgress < toProgress)
                 {
                     showProgress += progressStep;
-                    Debug.Log("Loading progress: " + showProgress);
+                    Debug.Log("Show progress: " + showProgress);
 
                     yield return null;
                 }
@@ -57,7 +57,7 @@ namespace Toolkit.Controllers
                     while (showProgress < toProgress)
                     {
                         showProgress += progressStep;
-                        Debug.Log("Loading progress: " + showProgress);
+                        Debug.Log("Show progress: " + showProgress);
 
                         yield return null;
                     }
