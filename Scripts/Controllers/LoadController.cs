@@ -16,12 +16,19 @@ namespace Toolkit.Controllers
     [AddComponentMenu("Toolkit/Controllers/LoadController")]
     public class LoadController : Singleton<LoadController>
     {
-        public AsyncOperation asyncOperation;
         public bool autoActivation = false;
+        public float progressStep = 1f;
+        [NonSerialized]
+        public float showProgress;
+
+        private AsyncOperation asyncOperation;
 
         private IEnumerator LoadSceneAsync(string sceneName)
         {
             yield return null;
+
+            float toProgress = 0;
+            showProgress = 0;
 
             //Begin to load the Scene you specify
             asyncOperation = SceneManager.LoadSceneAsync(sceneName);
@@ -31,11 +38,30 @@ namespace Toolkit.Controllers
             //When the load is still in progress, output the Text and progress bar
             while (!asyncOperation.isDone)
             {
+                toProgress = asyncOperation.progress * 100;
                 // Debug.Log("Loading progress: " + asyncOperation.progress);
+
+                while (showProgress < toProgress)
+                {
+                    showProgress += progressStep;
+                    Debug.Log("Loading progress: " + showProgress);
+
+                    yield return null;
+                }
 
                 // Check if the load has finished
                 if (asyncOperation.progress >= 0.9f)
                 {
+                    toProgress = 100;
+
+                    while (showProgress < toProgress)
+                    {
+                        showProgress += progressStep;
+                        Debug.Log("Loading progress: " + showProgress);
+
+                        yield return null;
+                    }
+
                     if (autoActivation)
                     {
                         //Activate the Scene
@@ -51,6 +77,11 @@ namespace Toolkit.Controllers
         {
             //Start loading the Scene asynchronously and output the progress bar
             StartCoroutine(LoadSceneAsync(sceneName));
+        }
+
+        public void AlowSceneActivation(bool allowSceneActivation)
+        {
+            asyncOperation.allowSceneActivation = allowSceneActivation;
         }
     }
 }
