@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toolkit.Managers;
 
-namespace Toolkit.UI
+namespace Toolkit
 {
     [RequireComponent(typeof(Canvas))]
     public class SingletonWindow<T> : Singleton<T> where T : SingletonWindow<T>

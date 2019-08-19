@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Particles
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Particles/ParticleEvent")]
     [RequireComponent(typeof(ParticleSystem))]

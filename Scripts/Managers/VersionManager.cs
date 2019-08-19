@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Managers
+namespace Toolkit
 {
     public static class VersionManager
     {

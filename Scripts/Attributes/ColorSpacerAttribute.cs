@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Attributes
+namespace Toolkit
 {
     // This class defines the ColorSpacer attribute, so that
     // it can be used in your regular MonoBehaviour scripts:

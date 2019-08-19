@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Attributes
+namespace Toolkit
 {
     public class RangeIntLimitAttribute : PropertyAttribute
     {

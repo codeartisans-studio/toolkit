@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using System.IO;
 
-namespace Toolkit.Localization
+namespace Toolkit
 {
     public class LocalizedTextEditor : EditorWindow
     {

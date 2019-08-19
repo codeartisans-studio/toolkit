@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace Toolkit.UI
+namespace Toolkit
 {
     // An FPS counter.
     // It calculates frames/second over each updateInterval,

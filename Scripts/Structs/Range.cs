@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Structs
+namespace Toolkit
 {
     [Serializable]
     public struct Range<T>

@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Toolkit.Managers
+namespace Toolkit
 {
     public class CustomEvent : UnityEvent<string, object> { }
 

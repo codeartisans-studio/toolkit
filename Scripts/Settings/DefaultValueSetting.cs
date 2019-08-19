@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 
-namespace Toolkit.Settings
+namespace Toolkit
 {
 	[AddComponentMenu ("Toolkit/Settings/DefaultValueSetting")]
 	public class DefaultValueSetting : MonoBehaviour

@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Xml.Serialization;
 using UnityEngine;
 
-namespace Toolkit.Utilities
+namespace Toolkit
 {
     public static class PersistentUtility
     {

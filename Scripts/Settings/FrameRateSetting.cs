@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Settings
+namespace Toolkit
 {
 	[AddComponentMenu ("Toolkit/Settings/FrameRateSetting")]
 	public class FrameRateSetting : MonoBehaviour

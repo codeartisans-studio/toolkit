@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Cameras
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Cameras/CameraFollowing")]
     public class CameraFollowing : MonoBehaviour

@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using Toolkit;
 using Toolkit.UI;
 
-namespace Toolkit.Controllers
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Controllers/FadingController")]
     [RequireComponent(typeof(Animator))]

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toolkit.Cameras;
 
-namespace Toolkit.Transforms
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Transforms/PositionAlignment")]
     public class PositionAlignment : MonoBehaviour

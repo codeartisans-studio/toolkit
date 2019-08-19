@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.UI
+namespace Toolkit
 {
     [Obsolete("This is an obsolete class, use SingletonWindow instead")]
     [AddComponentMenu("Toolkit/UI/CanvasVisibility")]

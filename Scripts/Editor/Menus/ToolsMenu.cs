@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 
-namespace Toolkit.Editor
+namespace Toolkit
 {
     public class ToolsMenu
     {

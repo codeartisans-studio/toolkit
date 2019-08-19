@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using Toolkit.Attributes;
 
-namespace Toolkit.Editor
+namespace Toolkit
 {
     // This defines how the ColorSpacer should be drawn
     // in the inspector, when inspecting a GameObject with

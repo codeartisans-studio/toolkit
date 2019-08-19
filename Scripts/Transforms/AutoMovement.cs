@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Transforms
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Transforms/AutoMovement")]
     public class AutoMovement : MonoBehaviour

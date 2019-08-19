@@ -11,7 +11,7 @@ public enum LineType
 	Dashed
 }
 
-namespace Toolkit.Textures
+namespace Toolkit
 {
 	public class TextureGrapher
 	{

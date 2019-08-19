@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Networking;
 
-namespace Toolkit.Controllers
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Controllers/HttpController")]
     public class HttpController : Singleton<HttpController>

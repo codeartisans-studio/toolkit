@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Audios
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Audios/AudioCollision")]
     [RequireComponent(typeof(AudioSource))]

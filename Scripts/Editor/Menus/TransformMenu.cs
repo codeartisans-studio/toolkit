@@ -5,7 +5,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using Toolkit.Cameras;
 
-namespace Toolkit.Editor
+namespace Toolkit
 {
     public class TransformMenu
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Meshs
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Meshs/MeshSortingLayer")]
     public class MeshSortingLayer : MonoBehaviour

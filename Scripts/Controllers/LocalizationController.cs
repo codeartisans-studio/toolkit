@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 
-namespace Toolkit.Controllers
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Controllers/LocalizationController")]
     public class LocalizationController : Singleton<LocalizationController>

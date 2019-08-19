@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Audios
+namespace Toolkit
 {
     public abstract class AudioEvent : ScriptableObject
     {

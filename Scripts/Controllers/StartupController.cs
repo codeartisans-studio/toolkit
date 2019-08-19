@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Toolkit.Controllers
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Controllers/StartupController")]
     public class StartupController : Singleton<StartupController>

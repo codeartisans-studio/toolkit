@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Transforms
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Transforms/FollowTarget")]
     public class FollowTarget : MonoBehaviour

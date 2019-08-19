@@ -11,7 +11,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Toolkit.Controllers
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Controllers/LoadController")]
     public class LoadController : Singleton<LoadController>

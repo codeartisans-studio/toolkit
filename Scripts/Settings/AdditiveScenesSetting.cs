@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace Toolkit.Settings
+namespace Toolkit
 {
 	[AddComponentMenu ("Toolkit/Settings/AdditiveScenesSetting")]
 	public class AdditiveScenesSetting : MonoBehaviour

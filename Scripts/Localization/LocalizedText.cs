@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Toolkit.Controllers;
 
-namespace Toolkit.Localization
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Localization/LocalizedText")]
     public class LocalizedText : MonoBehaviour

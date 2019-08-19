@@ -6,7 +6,7 @@ using Toolkit.Attributes;
 using Toolkit.Structs;
 using RangeInt = Toolkit.Structs.RangeInt;
 
-namespace Toolkit.Editor
+namespace Toolkit
 {
     [CustomPropertyDrawer(typeof(RangeIntLimitAttribute))]
     public class RangeIntLimitDrawer : PropertyDrawer

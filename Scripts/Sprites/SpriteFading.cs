@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Toolkit.Sprites
+namespace Toolkit
 {
 	[AddComponentMenu ("Toolkit/Sprites/SpriteFading")]
 	public class SpriteFading : MonoBehaviour

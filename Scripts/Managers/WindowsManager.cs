@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Toolkit.UI;
 
-namespace Toolkit.Managers
+namespace Toolkit
 {
     public static class WindowsManager
     {

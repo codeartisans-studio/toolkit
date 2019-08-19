@@ -5,7 +5,7 @@ using Toolkit.Structs;
 using Toolkit.Attributes;
 using Random = UnityEngine.Random;
 
-namespace Toolkit.Audios
+namespace Toolkit
 {
     [CreateAssetMenu(menuName = "Toolkit/Audio Events/Random Audio Event")]
     public class RandomAudioEvent : AudioEvent

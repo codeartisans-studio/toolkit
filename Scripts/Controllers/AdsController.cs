@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.Advertisements;
 using Toolkit;
 
-namespace Toolkit.Controllers
+namespace Toolkit
 {
     [AddComponentMenu("Toolkit/Controllers/AdsController")]
     public class AdsController : Singleton<AdsController>
