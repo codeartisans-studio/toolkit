@@ -54,7 +54,6 @@ namespace Toolkit.Localization
             }
         }
 
-
         private void SaveGameData()
         {
             string filePath = EditorUtility.SaveFilePanel("Save localization data file", Application.streamingAssetsPath, "", "json");
