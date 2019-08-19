@@ -8,13 +8,13 @@ namespace Toolkit.Editor
 {
     public class ToolsMenu
     {
-        [MenuItem("Tools/PlayerPrefs Tools/Delete All")]
-        private static void DeleteAll()
+        [MenuItem("Tools/Clear All PlayerPrefs")]
+        private static void ClearAllPlayerPrefs()
         {
             PlayerPrefs.DeleteAll();
         }
 
-        [MenuItem("Tools/Transform Tools/Align With Ground %t")]
+        [MenuItem("Tools/Align With Ground %t")]
         private static void AlignWithGround()
         {
             Transform[] transforms = Selection.transforms;
@@ -34,6 +34,56 @@ namespace Toolkit.Editor
                     myTransform.eulerAngles = targetRotation;
 
                     EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
+                }
+            }
+        }
+
+        [MenuItem("Tools/Check Prototype References")]
+        private static void CheckprototypeReferences()
+        {
+            string prototypePath = EditorUtility.OpenFolderPanel("Choose folder", Application.dataPath, "");
+
+            if (prototypePath != "")
+            {
+                var files = System.IO.Directory.GetFiles(prototypePath, "*.*", System.IO.SearchOption.AllDirectories);
+
+                //make it relative to asset folder so we can compare easily later
+                prototypePath = prototypePath.Replace(Application.dataPath, "Assets");
+
+                foreach (var s in files)
+                {
+                    string relativePath = s.Replace(Application.dataPath, "Assets");
+
+                    //ignore metafile
+                    if (!relativePath.EndsWith(".prefab") && !relativePath.EndsWith(".asset"))
+                        continue;
+
+                    var assets = AssetDatabase.LoadAllAssetsAtPath(relativePath);
+
+                    foreach (var a in assets)
+                    {
+                        SerializedObject obj = new SerializedObject(a);
+                        var prop = obj.GetIterator();
+
+                        while (prop.NextVisible(true))
+                        {
+                            //monobehaviour have exposed Icon & script we do not want to test
+                            if (prop.propertyType == SerializedPropertyType.ObjectReference
+                                && prop.displayName != "Icon" && prop.displayName != "Script")
+                            {
+                                var referencedAssetPath = AssetDatabase.GetAssetPath(prop.objectReferenceValue);
+
+                                //ignore built-in resources, only look if we are linking stuff from the projects
+                                if (!referencedAssetPath.Contains("Assets/"))
+                                    continue;
+
+                                if (!referencedAssetPath.Contains(prototypePath))
+                                {
+                                    Debug.Log("External referenced on " + relativePath + ": " + prop.displayName + " to " + referencedAssetPath, a);
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
