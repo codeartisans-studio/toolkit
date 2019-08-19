@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using Toolkit;
-using Toolkit.UI;
 
 namespace Toolkit
 {

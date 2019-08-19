@@ -1,8 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Toolkit.Structs;
-using Toolkit.Attributes;
 using Random = UnityEngine.Random;
 
 namespace Toolkit
