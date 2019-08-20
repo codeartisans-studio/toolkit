@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEditor;
 using RangeInt = Toolkit.RangeInt;
 
-namespace Toolkit
+namespace Toolkit.Editor
 {
     [CustomPropertyDrawer(typeof(RangeIntLimitAttribute))]
     public class RangeIntLimitDrawer : PropertyDrawer

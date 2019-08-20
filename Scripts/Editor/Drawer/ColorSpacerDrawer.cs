@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace Toolkit
+namespace Toolkit.Editor
 {
     // This defines how the ColorSpacer should be drawn
     // in the inspector, when inspecting a GameObject with

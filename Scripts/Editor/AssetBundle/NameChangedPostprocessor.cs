@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-namespace Toolkit
+namespace Toolkit.Editor
 {
     public class NameChangedPostprocessor : AssetPostprocessor
     {
