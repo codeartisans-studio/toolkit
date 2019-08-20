@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 using UnityEditor.SceneManagement;
+using UnityEditor.Compilation;
 
 namespace Toolkit.Editor
 {
@@ -35,6 +36,19 @@ namespace Toolkit.Editor
 
                     EditorSceneManager.MarkSceneDirty(EditorSceneManager.GetActiveScene());
                 }
+            }
+        }
+
+        [MenuItem("Tools/List Player Assemblies in Console")]
+        public static void PrintAssemblyNames()
+        {
+            UnityEngine.Debug.Log("== Player Assemblies ==");
+
+            Assembly[] playerAssemblies = CompilationPipeline.GetAssemblies(AssembliesType.Player);
+
+            foreach (var assembly in playerAssemblies)
+            {
+                UnityEngine.Debug.Log(assembly.name);
             }
         }
 
