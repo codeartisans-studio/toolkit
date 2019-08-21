@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Toolkit
 {
@@ -19,20 +20,18 @@ namespace Toolkit
         private class AssetBundleRef
         {
             public AssetBundle assetBundle = null;
-            public int version;
             public string url;
 
-            public AssetBundleRef(string strUrlIn, int intVersionIn)
+            public AssetBundleRef(string strUrlIn)
             {
                 url = strUrlIn;
-                version = intVersionIn;
             }
         };
 
         // Get an AssetBundle
-        public static AssetBundle GetAssetBundle(string url, int version)
+        public static AssetBundle GetAssetBundle(string url)
         {
-            string keyName = url + version.ToString();
+            string keyName = url;
             AssetBundleRef abRef;
             if (dictAssetBundleRefs.TryGetValue(keyName, out abRef))
                 return abRef.assetBundle;
@@ -41,28 +40,30 @@ namespace Toolkit
         }
 
         // Download an AssetBundle
-        public static IEnumerator DownloadAssetBundle(string url, int version)
+        public static IEnumerator DownloadAssetBundle(string url)
         {
-            string keyName = url + version.ToString();
+            string keyName = url;
             if (dictAssetBundleRefs.ContainsKey(keyName))
+            {
                 yield return null;
+            }
             else
             {
-                while (!Caching.ready)
-                    yield return null;
-
-                using (WWW www = WWW.LoadFromCacheOrDownload(url, version))
+                using (UnityWebRequest uwr = UnityWebRequestAssetBundle.GetAssetBundle(url))
                 {
-                    yield return www;
-                    if (www.error != null)
-                    {
-                        throw new Exception("WWW download:" + www.error);
-                    }
+                    yield return uwr.SendWebRequest();
 
-                    if (www.assetBundle)
+                    if (uwr.isNetworkError || uwr.isHttpError)
                     {
-                        AssetBundleRef abRef = new AssetBundleRef(url, version);
-                        abRef.assetBundle = www.assetBundle;
+                        Debug.Log(uwr.error);
+                    }
+                    else
+                    {
+                        // Get downloaded asset bundle
+                        AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(uwr);
+
+                        AssetBundleRef abRef = new AssetBundleRef(url);
+                        abRef.assetBundle = bundle;
                         dictAssetBundleRefs.Add(keyName, abRef);
                     }
                 }
@@ -70,9 +71,9 @@ namespace Toolkit
         }
 
         // Unload an AssetBundle
-        public static void Unload(string url, int version, bool allObjects)
+        public static void Unload(string url, bool allObjects)
         {
-            string keyName = url + version.ToString();
+            string keyName = url;
             AssetBundleRef abRef;
             if (dictAssetBundleRefs.TryGetValue(keyName, out abRef))
             {
