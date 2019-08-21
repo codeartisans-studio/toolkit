@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 using UnityEditor;
 
@@ -15,22 +16,48 @@ namespace Toolkit.Editor
                 Debug.Log("AssetBundle: " + name);
         }
 
+        [MenuItem("Assets/Build AssetBundles/StandaloneWindows64")]
+        private static void BuildAssetBundlesStandaloneWindows64()
+        {
+            string assetBundleDirectory = "Assets/AssetBundles/StandaloneWindows64";
+            if (!Directory.Exists(assetBundleDirectory))
+            {
+                Directory.CreateDirectory(assetBundleDirectory);
+            }
+            BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows64);
+        }
+
+        [MenuItem("Assets/Build AssetBundles/StandaloneOSX")]
+        private static void BuildAssetBundlesStandaloneOSX()
+        {
+            string assetBundleDirectory = "Assets/AssetBundles/StandaloneOSX";
+            if (!Directory.Exists(assetBundleDirectory))
+            {
+                Directory.CreateDirectory(assetBundleDirectory);
+            }
+            BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.StandaloneOSX);
+        }
+
         [MenuItem("Assets/Build AssetBundles/Android")]
         private static void BuildAssetBundlesAndroid()
         {
-            BuildPipeline.BuildAssetBundles("Assets/AssetBundles/Android", BuildAssetBundleOptions.None, BuildTarget.Android);
+            string assetBundleDirectory = "Assets/AssetBundles/Android";
+            if (!Directory.Exists(assetBundleDirectory))
+            {
+                Directory.CreateDirectory(assetBundleDirectory);
+            }
+            BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.Android);
         }
 
         [MenuItem("Assets/Build AssetBundles/iOS")]
         private static void BuildAssetBundlesiOS()
         {
-            BuildPipeline.BuildAssetBundles("Assets/AssetBundles/iOS", BuildAssetBundleOptions.None, BuildTarget.iOS);
-        }
-
-        [MenuItem("Assets/Build AssetBundles/StandaloneOS")]
-        private static void BuildAssetBundlesStandaloneOSX()
-        {
-            BuildPipeline.BuildAssetBundles("Assets/AssetBundles/StandaloneOSX", BuildAssetBundleOptions.None, BuildTarget.StandaloneOSX);
+            string assetBundleDirectory = "Assets/AssetBundles/iOS";
+            if (!Directory.Exists(assetBundleDirectory))
+            {
+                Directory.CreateDirectory(assetBundleDirectory);
+            }
+            BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.iOS);
         }
     }
 }
