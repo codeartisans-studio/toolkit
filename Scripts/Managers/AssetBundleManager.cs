@@ -49,7 +49,11 @@ namespace Toolkit
             }
             else
             {
+#if UNITY_2018_1_OR_NEWER
                 using (UnityWebRequest uwr = UnityWebRequestAssetBundle.GetAssetBundle(url))
+#else
+                using (UnityWebRequest uwr = UnityWebRequest.GetAssetBundle(url))
+#endif
                 {
                     yield return uwr.SendWebRequest();
 

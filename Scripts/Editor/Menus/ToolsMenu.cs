@@ -39,6 +39,7 @@ namespace Toolkit.Editor
             }
         }
 
+#if UNITY_2018_1_OR_NEWER
         [MenuItem("Tools/List Player Assemblies in Console")]
         public static void PrintAssemblyNames()
         {
@@ -51,6 +52,7 @@ namespace Toolkit.Editor
                 UnityEngine.Debug.Log(assembly.name);
             }
         }
+#endif
 
         [MenuItem("Tools/Check Prototype References")]
         private static void CheckprototypeReferences()
