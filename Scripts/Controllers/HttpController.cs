@@ -9,77 +9,81 @@ namespace Toolkit
     [AddComponentMenu("Toolkit/Controllers/HttpController")]
     public class HttpController : Singleton<HttpController>
     {
-        private void SetRequestHeaders(UnityWebRequest req, Dictionary<string, string> header)
+        private void SetRequestHeaders(UnityWebRequest uwr, Dictionary<string, string> header)
         {
             if (header == null)
                 return;
 
             foreach (var kvp in header)
             {
-                req.SetRequestHeader(kvp.Key, kvp.Value);
+                uwr.SetRequestHeader(kvp.Key, kvp.Value);
             }
         }
 
-        private IEnumerator SendWebRequest(UnityWebRequest req, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction)
+        private IEnumerator SendWebRequest(UnityWebRequest uwr, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction)
         {
-            yield return req.SendWebRequest();
+            yield return uwr.SendWebRequest();
 
-            if (req.isNetworkError)
+            if (uwr.isNetworkError || uwr.isHttpError)
             {
-                Debug.LogWarning(req.error);
+                Debug.LogWarning(uwr.error);
 
                 if (errorAction != null)
                 {
-                    errorAction(req);
+                    errorAction(uwr);
                 }
             }
             else
             {
-                Debug.Log(req.downloadHandler.text);
+                Debug.Log(uwr.downloadHandler.text);
 
                 if (successAction != null)
                 {
-                    successAction(req);
+                    successAction(uwr);
                 }
             }
         }
 
         private IEnumerator GetEnumerator(string uri, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
         {
-            UnityWebRequest req = UnityWebRequest.Get(uri);
+            using (UnityWebRequest uwr = UnityWebRequest.Get(uri))
+            {
+                SetRequestHeaders(uwr, header);
 
-            SetRequestHeaders(req, header);
-
-            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+                yield return StartCoroutine(SendWebRequest(uwr, successAction, errorAction));
+            }
         }
 
         private IEnumerator DeleteEnumerator(string uri, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
         {
-            UnityWebRequest req = UnityWebRequest.Delete(uri);
+            using (UnityWebRequest uwr = UnityWebRequest.Delete(uri))
+            {
+                SetRequestHeaders(uwr, header);
 
-            SetRequestHeaders(req, header);
-
-            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+                yield return StartCoroutine(SendWebRequest(uwr, successAction, errorAction));
+            }
         }
 
         // put byte array
         private IEnumerator PutEnumerator(string uri, byte[] bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
         {
-            UnityWebRequest req = UnityWebRequest.Put(uri, bodyData);
+            using (UnityWebRequest uwr = UnityWebRequest.Put(uri, bodyData))
+            {
+                SetRequestHeaders(uwr, header);
 
-            SetRequestHeaders(req, header);
-
-            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+                yield return StartCoroutine(SendWebRequest(uwr, successAction, errorAction));
+            }
         }
 
         // put string
         private IEnumerator PutEnumerator(string uri, string bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
         {
-            UnityWebRequest req = UnityWebRequest.Put(uri, bodyData);
+            using (UnityWebRequest uwr = UnityWebRequest.Put(uri, bodyData))
+            {
+                SetRequestHeaders(uwr, header);
 
-            SetRequestHeaders(req, header);
-
-            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+                yield return StartCoroutine(SendWebRequest(uwr, successAction, errorAction));
+            }
         }
 
         // put form
@@ -87,41 +91,45 @@ namespace Toolkit
         {
             byte[] bodyData = System.Text.Encoding.UTF8.GetBytes(form.ToString());
 
-            UnityWebRequest req = UnityWebRequest.Put(uri, bodyData);
+            using (UnityWebRequest uwr = UnityWebRequest.Put(uri, bodyData))
+            {
+                SetRequestHeaders(uwr, header);
 
-            SetRequestHeaders(req, header);
-
-            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+                yield return StartCoroutine(SendWebRequest(uwr, successAction, errorAction));
+            }
         }
 
         // post byte array
         private IEnumerator PostEnumerator(string uri, byte[] bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
         {
-            UnityWebRequest req = new UnityWebRequest(uri, UnityWebRequest.kHttpVerbPOST, new DownloadHandlerBuffer(), new UploadHandlerRaw(bodyData));
+            using (UnityWebRequest uwr = new UnityWebRequest(uri, UnityWebRequest.kHttpVerbPOST, new DownloadHandlerBuffer(), new UploadHandlerRaw(bodyData)))
+            {
+                SetRequestHeaders(uwr, header);
 
-            SetRequestHeaders(req, header);
-
-            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+                yield return StartCoroutine(SendWebRequest(uwr, successAction, errorAction));
+            }
         }
 
         // post string
         private IEnumerator PostEnumerator(string uri, string bodyData, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
         {
-            UnityWebRequest req = UnityWebRequest.Post(uri, bodyData);
+            using (UnityWebRequest uwr = UnityWebRequest.Post(uri, bodyData))
+            {
+                SetRequestHeaders(uwr, header);
 
-            SetRequestHeaders(req, header);
-
-            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+                yield return StartCoroutine(SendWebRequest(uwr, successAction, errorAction));
+            }
         }
 
         // post form
         private IEnumerator PostEnumerator(string uri, WWWForm form, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header)
         {
-            UnityWebRequest req = UnityWebRequest.Post(uri, form);
+            using (UnityWebRequest uwr = UnityWebRequest.Post(uri, form))
+            {
+                SetRequestHeaders(uwr, header);
 
-            SetRequestHeaders(req, header);
-
-            yield return StartCoroutine(SendWebRequest(req, successAction, errorAction));
+                yield return StartCoroutine(SendWebRequest(uwr, successAction, errorAction));
+            }
         }
 
         public void Get(string uri, Action<UnityWebRequest> successAction, Action<UnityWebRequest> errorAction, Dictionary<string, string> header = null)
