@@ -20,18 +20,20 @@ namespace Toolkit
         private class AssetBundleRef
         {
             public AssetBundle assetBundle = null;
+            public uint version;
             public string url;
 
-            public AssetBundleRef(string strUrlIn)
+            public AssetBundleRef(string strUrlIn, uint intVersionIn)
             {
                 url = strUrlIn;
+                version = intVersionIn;
             }
         };
 
         // Get an AssetBundle
-        public static AssetBundle GetAssetBundle(string url)
+        public static AssetBundle GetAssetBundle(string url, uint version)
         {
-            string keyName = url;
+            string keyName = url + version.ToString();
             AssetBundleRef abRef;
             if (dictAssetBundleRefs.TryGetValue(keyName, out abRef))
                 return abRef.assetBundle;
@@ -40,19 +42,22 @@ namespace Toolkit
         }
 
         // Download an AssetBundle
-        public static IEnumerator DownloadAssetBundle(string url)
+        public static IEnumerator DownloadAssetBundle(string url, uint version)
         {
-            string keyName = url;
+            string keyName = url + version.ToString();
             if (dictAssetBundleRefs.ContainsKey(keyName))
             {
                 yield return null;
             }
             else
             {
+                while (!Caching.ready)
+                    yield return null;
+
 #if UNITY_2018_1_OR_NEWER
-                using (UnityWebRequest uwr = UnityWebRequestAssetBundle.GetAssetBundle(url))
+                using (UnityWebRequest uwr = UnityWebRequestAssetBundle.GetAssetBundle(url, version, 0))
 #else
-                using (UnityWebRequest uwr = UnityWebRequest.GetAssetBundle(url))
+                using (UnityWebRequest uwr = UnityWebRequest.GetAssetBundle(url, version, 0))
 #endif
                 {
                     yield return uwr.SendWebRequest();
@@ -66,7 +71,7 @@ namespace Toolkit
                         // Get downloaded asset bundle
                         AssetBundle bundle = DownloadHandlerAssetBundle.GetContent(uwr);
 
-                        AssetBundleRef abRef = new AssetBundleRef(url);
+                        AssetBundleRef abRef = new AssetBundleRef(url, version);
                         abRef.assetBundle = bundle;
                         dictAssetBundleRefs.Add(keyName, abRef);
                     }
@@ -75,9 +80,9 @@ namespace Toolkit
         }
 
         // Unload an AssetBundle
-        public static void Unload(string url, bool allObjects)
+        public static void Unload(string url, uint version, bool allObjects)
         {
-            string keyName = url;
+            string keyName = url + version.ToString();
             AssetBundleRef abRef;
             if (dictAssetBundleRefs.TryGetValue(keyName, out abRef))
             {
