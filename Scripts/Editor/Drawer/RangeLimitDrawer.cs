@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
-using RangeInt = Toolkit.RangeInt;
 
 namespace Toolkit.Editor
 {
