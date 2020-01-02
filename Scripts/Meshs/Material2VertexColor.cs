@@ -4,9 +4,9 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    public class UpdateVertexColor : MonoBehaviour
+    public class Material2VertexColor : MonoBehaviour
     {
-        public Material material;
+        public Material colorMaterial;
         public string colorProperty = "_Color";
 
         // Start is called before the first frame update
@@ -55,7 +55,7 @@ namespace Toolkit
                 mesh.RecalculateNormals();
 
                 // 设置统一材质
-                renderer.materials = new Material[] { material };
+                renderer.materials = new Material[] { colorMaterial };
             }
         }
     }
