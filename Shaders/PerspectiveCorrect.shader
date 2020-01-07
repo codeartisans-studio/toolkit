@@ -1,4 +1,4 @@
-﻿Shader "Custom/Perspective Correct" {
+﻿Shader "Toolkit/Perspective Correct" {
     Properties {
         _MainTex ("Base (RGB)", 2D) = "white" {}
     }

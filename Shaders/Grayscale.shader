@@ -1,4 +1,4 @@
-﻿Shader "Custom/Grayscale" {
+﻿Shader "Toolkit/Grayscale" {
     Properties {
         [PerRendererData] _MainTex ("Sprite Texture", 2D) = "white" {}
 		_RampTex ("Ramp Texture", 2D) = "grayscaleRamp" {}

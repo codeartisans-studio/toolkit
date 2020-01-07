@@ -1,4 +1,4 @@
-﻿Shader "Custom/Sobel" {
+﻿Shader "Toolkit/Sobel" {
 	Properties {
         _MainTex ("Base (RGB)", 2D) = "white" {}
 	}
