@@ -17,7 +17,7 @@ namespace Toolkit
             // 遍历MeshRenderer
             foreach (MeshRenderer renderer in renderers)
             {
-                MeshFilter filter = GetComponent<MeshFilter>();
+                MeshFilter filter = renderer.GetComponent<MeshFilter>();
 
                 // 获得分离公共顶点的Mesh
                 Mesh mesh = MeshUtility.SplitSubMesh(filter.mesh);
