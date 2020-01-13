@@ -9,8 +9,7 @@ namespace Toolkit
         public Material colorMaterial;
         public string colorProperty = "_Color";
 
-        // Start is called before the first frame update
-        void Start()
+        void Awake()
         {
             MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
 
