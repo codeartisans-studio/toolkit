@@ -75,5 +75,31 @@ namespace Toolkit
 
             return mesh;
         }
+
+        // 合并对象数组每个对象下所有Mesh
+        public static Mesh CombineMeshes(Transform transform, GameObject[] combineObjects)
+        {
+            List<CombineInstance> combineInstances = new List<CombineInstance>();
+
+            foreach (GameObject combineObject in combineObjects)
+            {
+                MeshFilter[] meshFilters = combineObject.GetComponentsInChildren<MeshFilter>();
+
+                foreach (MeshFilter meshFilter in meshFilters)
+                {
+                    CombineInstance combineInstance = new CombineInstance();
+                    combineInstance.mesh = meshFilter.sharedMesh;
+                    combineInstance.transform = transform.worldToLocalMatrix * meshFilter.transform.localToWorldMatrix;
+                    combineInstances.Add(combineInstance);
+                }
+
+                GameObject.Destroy(combineObject);
+            }
+
+            Mesh mesh = new Mesh();
+            mesh.indexFormat = UnityEngine.Rendering.IndexFormat.UInt32;
+            mesh.CombineMeshes(combineInstances.ToArray());
+            return mesh;
+        }
     }
 }
