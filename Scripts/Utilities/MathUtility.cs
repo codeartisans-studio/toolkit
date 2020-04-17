@@ -7,11 +7,14 @@ namespace Toolkit
 {
     public static class MathUtility
     {
+        // 从数组中随机出一定数量的索引
         public static int[] RandomIndices(int count, int arrayCount)
         {
-            Debug.AssertFormat(count < arrayCount, "Random count {0} greater than array count {1}!", count, arrayCount);
-
             List<int> indices = Enumerable.Range(0, arrayCount).ToList();
+
+            // 如果随机数量大于数组数量，直接返回全部数组
+            if (count >= arrayCount)
+                return indices.ToArray();
 
             int[] randomIndices = new int[count];
 
