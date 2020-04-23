@@ -7,23 +7,48 @@ namespace Toolkit
 {
     public static class MathUtility
     {
-        // 从数组中随机出一定数量的索引，如果需要数量大于数组数量，重新生成数组再次随机
-        public static int[] RandomIndices(int count, int arrayCount)
+        // 一定数量元素随机放入数组
+        // 如果需要数量大于数组数量，重新生成数组再次随机
+        // 返回一个一定数量索引素组
+        public static int[] RandomIndices(int elementCount, int arrayCount)
         {
-            List<int> indices = Enumerable.Range(0, arrayCount).ToList();
+            List<int> indices = new List<int>();
 
-            int[] randomIndices = new int[count];
+            int[] randomIndices = new int[elementCount];
 
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < elementCount; i++)
             {
-                randomIndices[i] = indices[Random.Range(0, indices.Count)];
-                indices.Remove(randomIndices[i]);
-
                 if (indices.Count == 0)
                     indices.AddRange(Enumerable.Range(0, arrayCount));
+
+                int index = indices[Random.Range(0, indices.Count)];
+                randomIndices[i] = index;
+                indices.Remove(index);
             }
 
             return randomIndices;
+        }
+
+        // 一定数量元素随机放入数组
+        // 如果需要数量大于数组数量，重新生成数组再次随机
+        // 返回数组中对应的元素数量
+        public static int[] RandomCount(int elementCount, int arrayCount)
+        {
+            List<int> indices = new List<int>();
+
+            int[] randomCount = new int[arrayCount];
+
+            for (int i = 0; i < elementCount; i++)
+            {
+                if (indices.Count == 0)
+                    indices.AddRange(Enumerable.Range(0, arrayCount));
+
+                int index = indices[Random.Range(0, indices.Count)];
+                randomCount[index] += 1;
+                indices.Remove(index);
+            }
+
+            return randomCount;
         }
     }
 }
