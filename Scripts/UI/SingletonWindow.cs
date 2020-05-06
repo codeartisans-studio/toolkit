@@ -25,7 +25,7 @@ namespace Toolkit
             WindowsManager.Remove(board);
         }
 
-        public void Open(bool isCloseOthers = true)
+        public virtual void Open(bool isCloseOthers = true)
         {
             if (isCloseOthers)
                 WindowsManager.CloseAll();
@@ -33,7 +33,7 @@ namespace Toolkit
             WindowsManager.Open(board);
         }
 
-        public void Close()
+        public virtual void Close()
         {
             WindowsManager.Close(board);
         }
