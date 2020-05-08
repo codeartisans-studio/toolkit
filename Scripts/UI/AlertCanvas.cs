@@ -11,28 +11,34 @@ namespace Toolkit
     public class AlertCanvas : SingletonWindow<AlertCanvas>
     {
         public Text messageText;
-        public Button cancelButton;
-        public Button confirmButton;
+        public Button[] confirmButtons;
+        public Button[] cancelButtons;
 
-        public Action submitAction;
+        public Action confirmAction;
         public Action cancelAction;
 
         // Start is called before the first frame update
         void Start()
         {
-            confirmButton.onClick.AddListener(() =>
+            foreach (Button confirmButton in confirmButtons)
             {
-                Close();
+                confirmButton.onClick.AddListener(() =>
+                {
+                    Close();
 
-                submitAction();
-            });
+                    confirmAction();
+                });
+            }
 
-            cancelButton.onClick.AddListener(() =>
+            foreach (Button cancelButton in cancelButtons)
             {
-                Close();
+                cancelButton.onClick.AddListener(() =>
+                {
+                    Close();
 
-                cancelAction();
-            });
+                    cancelAction();
+                });
+            }
         }
 
         public void Open(string message, Action confirmAction, Action cancelAction = null)
@@ -41,7 +47,7 @@ namespace Toolkit
 
             messageText.text = message;
 
-            this.submitAction = confirmAction;
+            this.confirmAction = confirmAction;
             this.cancelAction = cancelAction;
         }
     }
