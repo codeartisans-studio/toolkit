@@ -6,9 +6,9 @@ using UnityEngine;
 namespace Toolkit
 {
     [Obsolete("This is an obsolete class, use SingletonWindow instead")]
-    [AddComponentMenu("Toolkit/UI/CanvasVisibility")]
+    [AddComponentMenu("Toolkit/UI/VisibilityCanvas")]
     [RequireComponent(typeof(Canvas))]
-    public class CanvasVisibility : MonoBehaviour
+    public class VisibilityCanvas : MonoBehaviour
     {
         public GameObject board;
 
