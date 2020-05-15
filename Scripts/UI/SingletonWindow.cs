@@ -10,6 +10,8 @@ namespace Toolkit
     {
         public GameObject board;
 
+        public bool IsOpened { get => board.activeSelf; }
+
         protected virtual void Awake()
         {
             Close();
