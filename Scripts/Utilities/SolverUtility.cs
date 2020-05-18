@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    public static class IntegrationUtility
+    public static class SolverUtility
     {
         // Runge-Kutta法（Runge-Kutta methods）
         // https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods
