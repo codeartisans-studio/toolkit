@@ -5,8 +5,11 @@ using UnityEngine;
 
 namespace Toolkit
 {
+    //https://ww2.mathworks.cn/help/simulink/ug/choose-a-solver.html
     public static class SolverUtility
     {
+        // Fixed-step
+        // ode4(Runge-Kutta)
         // Runge-Kutta法（Runge-Kutta methods）
         // https://en.wikipedia.org/wiki/Runge%E2%80%93Kutta_methods
         // 例1（百度百科中例子）：
@@ -18,7 +21,7 @@ namespace Toolkit
         // yo += dt * ((T - (C * yn)) / M);// 表示正常运算
         // yn = IntegrationUtility.RK4(xn, yn, dt, (t, y) => (((T - (C * y)) / M)));
         // xn += dt
-        public static double RK4(double t, double y, double h, Func<double, double, double> f)
+        public static double Ode4(double t, double y, double h, Func<double, double, double> f)
         {
             double k1, k2, k3, k4;
 
@@ -28,6 +31,19 @@ namespace Toolkit
             k4 = f(t + h, y + h * k3);
 
             return y + h * (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+        }
+
+        // Fixxed-step
+        // ode1(Euler)
+        // Euler法(Euler method)
+        // https://en.wikipedia.org/wiki/Euler_method
+        public static double Ode1(double t, double y, double h, Func<double, double, double> f)
+        {
+            double k;
+
+            k = f(t, y);
+
+            return y + h * k;
         }
     }
 }
