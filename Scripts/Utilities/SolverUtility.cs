@@ -33,6 +33,42 @@ namespace Toolkit
             return y + h * (k1 + 2 * k2 + 2 * k3 + k4) / 6;
         }
 
+        public static double Ode4(float t, float y, float h, Func<float, float, float> f)
+        {
+            float k1, k2, k3, k4;
+
+            k1 = f(t, y);
+            k2 = f(t + h / 2, y + k1 * h / 2);
+            k3 = f(t + h / 2, y + k2 * h / 2);
+            k4 = f(t + h, y + h * k3);
+
+            return y + h * (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+        }
+
+        public static Vector3 Ode4(float t, Vector3 y, float h, Func<float, Vector3, Vector3> f)
+        {
+            Vector3 k1, k2, k3, k4;
+
+            k1 = f(t, y);
+            k2 = f(t + h / 2, y + k1 * h / 2);
+            k3 = f(t + h / 2, y + k2 * h / 2);
+            k4 = f(t + h, y + h * k3);
+
+            return y + h * (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+        }
+
+        public static Vector2 Ode4(float t, Vector2 y, float h, Func<float, Vector2, Vector2> f)
+        {
+            Vector2 k1, k2, k3, k4;
+
+            k1 = f(t, y);
+            k2 = f(t + h / 2, y + k1 * h / 2);
+            k3 = f(t + h / 2, y + k2 * h / 2);
+            k4 = f(t + h, y + h * k3);
+
+            return y + h * (k1 + 2 * k2 + 2 * k3 + k4) / 6;
+        }
+
         // Fixxed-step
         // ode1(Euler)
         // Euler法(Euler method)
@@ -40,6 +76,33 @@ namespace Toolkit
         public static double Ode1(double t, double y, double h, Func<double, double, double> f)
         {
             double k;
+
+            k = f(t, y);
+
+            return y + h * k;
+        }
+
+        public static double Ode1(float t, float y, float h, Func<float, float, float> f)
+        {
+            float k;
+
+            k = f(t, y);
+
+            return y + h * k;
+        }
+
+        public static Vector3 Ode1(float t, Vector3 y, float h, Func<float, Vector3, Vector3> f)
+        {
+            Vector3 k;
+
+            k = f(t, y);
+
+            return y + h * k;
+        }
+
+        public static Vector2 Ode1(float t, Vector2 y, float h, Func<float, Vector2, Vector2> f)
+        {
+            Vector2 k;
 
             k = f(t, y);
 
