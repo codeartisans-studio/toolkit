@@ -33,7 +33,7 @@ namespace Toolkit
             return y + h * (k1 + 2 * k2 + 2 * k3 + k4) / 6;
         }
 
-        public static double Ode4(float t, float y, float h, Func<float, float, float> f)
+        public static float Ode4(float t, float y, float h, Func<float, float, float> f)
         {
             float k1, k2, k3, k4;
 
@@ -82,7 +82,7 @@ namespace Toolkit
             return y + h * k;
         }
 
-        public static double Ode1(float t, float y, float h, Func<float, float, float> f)
+        public static float Ode1(float t, float y, float h, Func<float, float, float> f)
         {
             float k;
 
