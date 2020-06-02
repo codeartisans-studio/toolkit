@@ -6,16 +6,18 @@ using UnityEngine.UI;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/UI/AlertCanvas")]
     [RequireComponent(typeof(Canvas))]
-    public class AlertCanvas : SingletonWindow<AlertCanvas>
+    public abstract class AlertCanvas<T> : SingletonWindow<T> where T : AlertCanvas<T>
     {
         public Text messageText;
         public Button[] confirmButtons;
         public Button[] cancelButtons;
 
-        public Action confirmAction;
-        public Action cancelAction;
+        public Text confirmText;
+        public Text cancelText;
+
+        private Action confirmAction;
+        private Action cancelAction;
 
         // Start is called before the first frame update
         void Start()
@@ -45,12 +47,21 @@ namespace Toolkit
 
         public void Open(string message, Action confirmAction, Action cancelAction = null)
         {
+            Open(message, "确认", confirmAction, "取消", cancelAction);
+        }
+
+        public void Open(string message, string confirmText, Action confirmAction, string cancelText = null, Action cancelAction = null)
+        {
             Open(false);
 
             messageText.text = message;
 
+            this.confirmText.text = confirmText;
             this.confirmAction = confirmAction;
-            this.cancelAction = cancelAction;
+            if (cancelText != null)
+                this.cancelText.text = cancelText;
+            if (cancelAction != null)
+                this.cancelAction = cancelAction;
         }
     }
 }
