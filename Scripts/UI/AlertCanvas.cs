@@ -26,7 +26,8 @@ namespace Toolkit
                 {
                     Close();
 
-                    confirmAction();
+                    if (confirmAction != null)
+                        confirmAction();
                 });
             }
 
@@ -36,7 +37,8 @@ namespace Toolkit
                 {
                     Close();
 
-                    cancelAction();
+                    if (cancelAction != null)
+                        cancelAction();
                 });
             }
         }
