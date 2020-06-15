@@ -16,6 +16,17 @@ namespace Toolkit.Editor
                 Debug.Log("AssetBundle: " + name);
         }
 
+        [MenuItem("Assets/Build AssetBundles/StandaloneWindows")]
+        private static void BuildAssetBundlesStandaloneWindows()
+        {
+            string assetBundleDirectory = "Assets/AssetBundles/StandaloneWindows";
+            if (!Directory.Exists(assetBundleDirectory))
+            {
+                Directory.CreateDirectory(assetBundleDirectory);
+            }
+            BuildPipeline.BuildAssetBundles(assetBundleDirectory, BuildAssetBundleOptions.None, BuildTarget.StandaloneWindows);
+        }
+
         [MenuItem("Assets/Build AssetBundles/StandaloneWindows64")]
         private static void BuildAssetBundlesStandaloneWindows64()
         {
