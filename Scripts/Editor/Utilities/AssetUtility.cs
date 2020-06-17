@@ -15,7 +15,6 @@ namespace Toolkit
 
         public static void AssetsForEach(string filter, string folder, Action<string, GameObject> action)
         {
-            Debug.Log("xx");
             string[] guids = AssetDatabase.FindAssets(filter, new[] { folder });
 
             foreach (string guid in guids)
