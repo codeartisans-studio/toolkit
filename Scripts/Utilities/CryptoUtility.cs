@@ -15,7 +15,7 @@ namespace Toolkit
         /// </summary>
         /// <param name="txt"></param>
         /// <returns>加密后字符串</returns>
-        private static string GenerateSHA256(string txt)
+        public static string GenerateSHA256(string txt)
         {
             using (SHA256Managed sha256 = new SHA256Managed())
             {
@@ -55,7 +55,7 @@ namespace Toolkit
         /// </summary>
         /// <param name="inputStream"></param>
         /// <returns></returns>
-        private static string GenerateSHA256(Stream inputStream)
+        public static string GenerateSHA256(Stream inputStream)
         {
             using (SHA256Managed sha256 = new SHA256Managed())
             {
