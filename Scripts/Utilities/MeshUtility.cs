@@ -101,5 +101,29 @@ namespace Toolkit
             mesh.CombineMeshes(combineInstances.ToArray());
             return mesh;
         }
+
+        public static PerspectiveCorrectUV2(Vector2[] uv)
+        {
+            Vector2[] uv2 = new Vector2[] {
+                new Vector2 (uv [3].x, uv [1].y),
+                new Vector2 (uv [2].x, uv [1].y),
+                new Vector2 (uv [2].x, uv [2].y),
+                new Vector2 (uv [3].x, uv [2].y)
+            };
+
+            float distance = transform.position.z - Camera.main.transform.position.z;
+
+            uv2[0].x *= (1 + mesh.vertices[0].z / distance);
+            uv2[0].x /= (1 + mesh.vertices[3].z / distance);
+            uv2[1].x *= (1 + mesh.vertices[1].z / distance);
+            uv2[1].x /= (1 + mesh.vertices[2].z / distance);
+
+            uv2[0].y *= (1 + mesh.vertices[0].z / distance);
+            uv2[0].y /= (1 + mesh.vertices[1].z / distance);
+            uv2[3].y *= (1 + mesh.vertices[3].z / distance);
+            uv2[3].y /= (1 + mesh.vertices[2].z / distance);
+
+            return uv2;
+        }
     }
 }
