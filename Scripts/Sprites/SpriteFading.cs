@@ -4,76 +4,84 @@ using UnityEngine;
 
 namespace Toolkit
 {
-	[AddComponentMenu ("Toolkit/Sprites/SpriteFading")]
-	public class SpriteFading : MonoBehaviour
-	{
-		public float fadeSpeed = 2f;
-		public bool changeChildren = true;
+    [AddComponentMenu("Toolkit/Sprites/SpriteFading")]
+    public class SpriteFading : MonoBehaviour
+    {
+        public float fadeSpeed = 2f;
+        public bool changeChildren = true;
 
-		private float alpha = 1f;
-		private int fadeDir = 1;
+        private float alpha = 1f;
+        private int fadeDir = 1;
 
-		void Awake ()
-		{
-			SpriteRenderer sr = GetComponentInChildren<SpriteRenderer> ();
-			alpha = sr.color.a;
-		}
+        void Awake()
+        {
+            SpriteRenderer sr = GetComponentInChildren<SpriteRenderer>();
+            alpha = sr.color.a;
+        }
 
-		public float Alpha {
-			get {
-				return alpha;
-			}
-			set {
-				value = Mathf.Clamp01 (value);
-			
-				if (alpha != value) {
-					alpha = value;
+        public float Alpha
+        {
+            get
+            {
+                return alpha;
+            }
+            set
+            {
+                value = Mathf.Clamp01(value);
 
-					if (changeChildren) {
-						foreach (SpriteRenderer s in GetComponentsInChildren <SpriteRenderer> ()) {
-							s.color = new Color (s.color.r, s.color.g, s.color.b, alpha);
-							s.enabled = (alpha != 0);
-						}
-					} else {
-						SpriteRenderer s = GetComponent<SpriteRenderer> ();
-						s.color = new Color (s.color.r, s.color.g, s.color.b, alpha);
-						s.enabled = (alpha != 0);
-					}
-				}
-			}
-		}
+                if (alpha != value)
+                {
+                    alpha = value;
 
-		// Update is called once per frame
-		void Update ()
-		{
-			Alpha += fadeDir * fadeSpeed * Time.deltaTime;
-		}
+                    if (changeChildren)
+                    {
+                        foreach (SpriteRenderer s in GetComponentsInChildren<SpriteRenderer>())
+                        {
+                            s.color = new Color(s.color.r, s.color.g, s.color.b, alpha);
+                            s.enabled = (alpha != 0);
+                        }
+                    }
+                    else
+                    {
+                        SpriteRenderer s = GetComponent<SpriteRenderer>();
+                        s.color = new Color(s.color.r, s.color.g, s.color.b, alpha);
+                        s.enabled = (alpha != 0);
+                    }
+                }
+            }
+        }
 
-		public void ToggleFade ()
-		{
-			fadeDir *= -1;
-		}
+        // Update is called once per frame
+        void Update()
+        {
+            Alpha += fadeDir * fadeSpeed * Time.deltaTime;
+        }
 
-		public void FadeIn ()
-		{
-			fadeDir = 1;
-		}
+        public void ToggleFade()
+        {
+            fadeDir *= -1;
+        }
 
-		public void FadeOut ()
-		{
-			fadeDir = -1;
-		}
+        public void FadeIn()
+        {
+            fadeDir = 1;
+        }
 
-		public void Show ()
-		{
-			Alpha = 1;
-			fadeDir = 1;
-		}
+        public void FadeOut()
+        {
+            fadeDir = -1;
+        }
 
-		public void Hide ()
-		{
-			Alpha = 0;
-			fadeDir = -1;
-		}
-	}
+        public void Show()
+        {
+            Alpha = 1;
+            fadeDir = 1;
+        }
+
+        public void Hide()
+        {
+            Alpha = 0;
+            fadeDir = -1;
+        }
+    }
 }
