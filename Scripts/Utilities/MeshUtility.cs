@@ -102,7 +102,7 @@ namespace Toolkit
             return mesh;
         }
 
-        public static PerspectiveCorrectUV2(Vector2[] uv)
+        public static Vector2[] PerspectiveCorrectUV2(Vector2[] uv)
         {
             Vector2[] uv2 = new Vector2[] {
                 new Vector2 (uv [3].x, uv [1].y),
