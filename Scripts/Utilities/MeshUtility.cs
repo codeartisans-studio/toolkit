@@ -102,16 +102,14 @@ namespace Toolkit
             return mesh;
         }
 
-        public static Vector2[] PerspectiveCorrectUV2(Vector2[] uv)
+        public static Vector2[] PerspectiveCorrectUV2(Mesh mesh, float distance)
         {
             Vector2[] uv2 = new Vector2[] {
-                new Vector2 (uv [3].x, uv [1].y),
-                new Vector2 (uv [2].x, uv [1].y),
-                new Vector2 (uv [2].x, uv [2].y),
-                new Vector2 (uv [3].x, uv [2].y)
+                new Vector2 (mesh.uv [3].x, mesh.uv [1].y),
+                new Vector2 (mesh.uv [2].x, mesh.uv [1].y),
+                new Vector2 (mesh.uv [2].x, mesh.uv [2].y),
+                new Vector2 (mesh.uv [3].x, mesh.uv [2].y)
             };
-
-            float distance = transform.position.z - Camera.main.transform.position.z;
 
             uv2[0].x *= (1 + mesh.vertices[0].z / distance);
             uv2[0].x /= (1 + mesh.vertices[3].z / distance);
