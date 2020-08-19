@@ -8,13 +8,12 @@ namespace Toolkit
     [AddComponentMenu("Toolkit/Controllers/LocalizationController")]
     public class LocalizationController : Singleton<LocalizationController>
     {
-        private Dictionary<string, string> localizedText;
+        private Dictionary<string, string> localizedText = new Dictionary<string, string>();
         private bool isReady = false;
         private string missingTextString = "Localized text not found";
 
         public void LoadLocalizedText(string fileName)
         {
-            localizedText = new Dictionary<string, string>();
             string filePath = Path.Combine(Application.streamingAssetsPath, fileName);
 
             if (File.Exists(filePath))
