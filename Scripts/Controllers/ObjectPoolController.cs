@@ -100,7 +100,7 @@ namespace Toolkit
 
             if (!instantiatedObjects.TryGetValue(instanceID, out originalInstanceID))
             {
-                Debug.LogError(string.Format("Unable to get the original instance ID of {0}: has the object been placed in the ObjectPool?", instantiatedObject));
+                Debug.LogErrorFormat("Unable to get the original instance ID of {0}: has the object been placed in the ObjectPool?", instantiatedObject);
                 return -1;
             }
 
@@ -176,7 +176,7 @@ namespace Toolkit
             int originalInstanceID;
             if (!instantiatedObjects.TryGetValue(instanceID, out originalInstanceID))
             {
-                Debug.LogError(string.Format("Unable to pool {0} (instance {1}): the GameObject was not instantiated with ObjectPool.Instantiate.", instantiatedObject.name, instanceID));
+                Debug.LogErrorFormat("Unable to pool {0} (instance {1}): the GameObject was not instantiated with ObjectPool.Instantiate.", instantiatedObject.name, instanceID);
                 return;
             }
 
