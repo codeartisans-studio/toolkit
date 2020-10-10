@@ -1,0 +1,23 @@
+{
+  "name": "studio.codeartisans.toolkit",
+  "version": "0.0.1",
+  "displayName": "Toolkit",
+  "description": "This is an example package",
+  "unity": "2018.4",
+  "dependencies": {},
+  "keywords": [
+    "toolkit"
+  ],
+  "author": {
+    "name": "Codeartisans Studio",
+    "email": "unity@example.com",
+    "url": "http://codeartisans.studio"
+  },
+  "samples": [
+    {
+      "displayName": "Examples",
+      "description": "Scripts showing how to create and modify meshes at runtime.",
+      "path": "Samples~/Examples"
+    }
+  ]
+}
