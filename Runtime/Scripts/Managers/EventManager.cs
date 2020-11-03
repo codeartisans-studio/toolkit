@@ -85,7 +85,7 @@ namespace Toolkit
             if (ObjectEventDictionary.TryGetValue(obj, out dictionary))
             {
                 CustomEvent thisEvent = null;
-                if (GlobalEventDictionary.TryGetValue(eventName, out thisEvent))
+                if (dictionary.TryGetValue(eventName, out thisEvent))
                     thisEvent.Invoke(eventName, eventParams);
             }
         }
