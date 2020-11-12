@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[DisallowMultipleComponent]
-public class DontDestroy : MonoBehaviour
+namespace Toolkit
 {
-    void Awake()
+    [DisallowMultipleComponent]
+    public class DontDestroy : MonoBehaviour
     {
-        DontDestroyOnLoad(this.gameObject);
+        void Awake()
+        {
+            DontDestroyOnLoad(this.gameObject);
+        }
     }
 }
