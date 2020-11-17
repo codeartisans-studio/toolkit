@@ -14,7 +14,7 @@ namespace Toolkit.Editor
         static void Init()
         {
             EditorWindow window = EditorWindow.GetWindow(typeof(LocalizedTextEditor));
-            window.titleContent = new GUIContent("Align Position");
+            window.titleContent = new GUIContent("Localized Text Editor");
             window.Show();
         }
 
