@@ -7,7 +7,7 @@ using UnityEditor.Compilation;
 
 namespace Toolkit.Editor
 {
-    public class ToolsMenu
+    public static class ToolsMenu
     {
         [MenuItem("Tools/Clear All PlayerPrefs")]
         private static void ClearAllPlayerPrefs()

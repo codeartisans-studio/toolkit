@@ -6,7 +6,7 @@ using UnityEditor.SceneManagement;
 
 namespace Toolkit.Editor
 {
-    public class TransformMenu
+    public static class TransformMenu
     {
         [MenuItem("CONTEXT/Transform/Reset Position X")]
         private static void ResetPositionX(MenuCommand menuCommand)
