@@ -11,6 +11,5 @@ namespace Toolkit.Editor
         {
             Debug.Log("Asset " + assetPath + " has been moved from assetBundle " + previousAssetBundleName + " to assetBundle " + newAssetBundleName + ".");
         }
-
     }
 }
