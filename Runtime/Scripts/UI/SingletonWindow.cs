@@ -22,7 +22,7 @@ namespace Toolkit
             WindowsManager.Add(board);
         }
 
-        protected virtual void OnDestroy()
+        protected virtual void OnDisable()
         {
             WindowsManager.Remove(board);
         }
