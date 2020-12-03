@@ -12,8 +12,6 @@ namespace Toolkit
         {
             // 顶点列表
             List<Vector3> vertices = new List<Vector3>(mesh.vertices);
-            // 绑定姿态列表
-            List<Matrix4x4> bindposes = new List<Matrix4x4>(mesh.bindposes);
             // 骨骼权重列表
             List<BoneWeight> boneWeights = new List<BoneWeight>(mesh.boneWeights);
 
@@ -44,14 +42,11 @@ namespace Toolkit
                 {
                     // 添加新顶点
                     vertices.Add(mesh.vertices[index]);
-                    // 添加绑定姿态
-                    bindposes.Add(mesh.bindposes[index]);
                     // 添加骨骼权重信息
-                    boneWeights.Add(mesh.boneWeights[index]);
+                    if (mesh.boneWeights.Length > 0)
+                        boneWeights.Add(mesh.boneWeights[index]);
                     // 构建替换顶点数据
                     trianglesMapping[index] = vertices.Count - 1;
-
-                    // Debug.Log("replace: " + index + " with: " + replace[index]);
                 }
 
                 // 遍历子mesh索引
@@ -65,10 +60,6 @@ namespace Toolkit
                         // 替换索引
                         subMeshTriangles[i][j] = trianglesMapping[index];
                 }
-
-
-                // 构建三角面信息
-                // triangles.AddRange(subMeshTriangles[i]);
             }
 
             mesh.vertices = vertices.ToArray();
