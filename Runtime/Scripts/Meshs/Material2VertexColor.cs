@@ -12,19 +12,40 @@ namespace Toolkit
         // Start is called before the first frame update
         void Awake()
         {
-            MeshRenderer[] renderers = GetComponentsInChildren<MeshRenderer>();
+            Renderer[] renderers = GetComponentsInChildren<Renderer>();
 
             // 遍历MeshRenderer
-            foreach (MeshRenderer renderer in renderers)
+            foreach (Renderer renderer in renderers)
             {
-                MeshFilter filter = renderer.GetComponent<MeshFilter>();
+                Mesh mesh = null;
+
+                if (renderer is MeshRenderer)
+                {
+                    MeshFilter filter = renderer.GetComponent<MeshFilter>();
+                    // 会实例化一个新Mesh
+                    mesh = filter.mesh;
+                }
+                else if (renderer is SkinnedMeshRenderer)
+                {
+                    // 有蒙皮信息，需要复制骨骼权重等额外信息
+                    SkinnedMeshRenderer skinnedMeshRenderer = renderer as SkinnedMeshRenderer;
+                    // 实例化新Mesh
+                    mesh = new Mesh();
+                    // 原Mesh烘培到新建Mesh中
+                    skinnedMeshRenderer.BakeMesh(mesh);
+                    // 复制所需信息
+                    mesh.bindposes = skinnedMeshRenderer.sharedMesh.bindposes;
+                    mesh.boneWeights = skinnedMeshRenderer.sharedMesh.boneWeights;
+                    // 设置新Mesh
+                    skinnedMeshRenderer.sharedMesh = mesh;
+                }
 
                 // 获得分离公共顶点的Mesh
-                Mesh mesh = MeshUtility.SplitSubMesh(filter.mesh);
+                mesh = MeshUtility.SplitSubMesh(mesh);
 
                 // 三角面列表
                 List<int> triangles = new List<int>();
-                // 定点色数组
+                // 顶点色数组
                 Color[] colors = new Color[mesh.vertexCount];
 
                 // 材质数组
@@ -47,10 +68,10 @@ namespace Toolkit
                         colors[index] = color;
                 }
 
-                // 设置顶点色
-                mesh.colors = colors;
                 // 合并Mesh
                 mesh.triangles = triangles.ToArray();
+                // 设置顶点色
+                mesh.colors = colors;
 
                 mesh.RecalculateNormals();
 
