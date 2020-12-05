@@ -39,6 +39,12 @@ namespace Toolkit
                     // 设置新Mesh
                     skinnedMeshRenderer.sharedMesh = mesh;
                 }
+                else
+                {
+                    // 忽略其他Renderer
+                    // 如ParticleSystemRenderer
+                    continue;
+                }
 
                 // 获得分离公共顶点的Mesh
                 mesh = MeshUtility.SplitSubMesh(mesh);
