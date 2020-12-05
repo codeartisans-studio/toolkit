@@ -32,6 +32,50 @@ namespace Toolkit
             return Quaternion.Inverse(rotation) * diff;
         }
 
+        /// <summary>
+        /// Transforms the direction from local space to world space. This is similar to Transform.TransformDirection but does not require a Transform.
+        /// </summary>
+        /// <param name="direction">The direction to transform from local space to world space.</param>
+        /// <param name="rotation">The world rotation of the object.</param>
+        /// <returns>The world space direction.</returns>
+        public static Vector3 TransformDirection(Vector3 direction, Quaternion rotation)
+        {
+            return rotation * direction;
+        }
+
+        /// <summary>
+        /// Transforms the direction from world space to local space. This is similar to Transform.InverseTransformDirection but does not require a Transform.
+        /// </summary>
+        /// <param name="direction">The direction to transform from world space to local space.</param>
+        /// <param name="rotation">The world rotation of the object.</param>
+        /// <returns>The local space direction.</returns>
+        public static Vector3 InverseTransformDirection(Vector3 direction, Quaternion rotation)
+        {
+            return Quaternion.Inverse(rotation) * direction;
+        }
+
+        /// <summary>
+        /// Transforms the rotation from local space to world space.
+        /// </summary>
+        /// <param name="worldRotation">The world rotation of the object.</param>
+        /// <param name="rotation">The rotation to transform from local space to world space.</param>
+        /// <returns>The world space rotation.</returns>
+        public static Quaternion TransformQuaternion(Quaternion worldRotation, Quaternion rotation)
+        {
+            return worldRotation * rotation;
+        }
+
+        /// <summary>
+        /// Transforms the rotation from world space to local space.
+        /// </summary>
+        /// <param name="worldRotation">The world rotation of the object.</param>
+        /// <param name="rotation">The rotation to transform from world space to local space.</param>
+        /// <returns>The local space rotation.</returns>
+        public static Quaternion InverseTransformQuaternion(Quaternion worldRotation, Quaternion rotation)
+        {
+            return Quaternion.Inverse(worldRotation) * rotation;
+        }
+
         // 一定数量元素随机放入数组
         // 如果需要数量大于数组数量，重新生成数组再次随机
         // 返回一个一定数量索引素组
