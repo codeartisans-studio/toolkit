@@ -31,9 +31,9 @@ namespace Toolkit
                     SkinnedMeshRenderer skinnedMeshRenderer = renderer as SkinnedMeshRenderer;
                     // 实例化新Mesh
                     mesh = new Mesh();
-                    // 原Mesh烘培到新建Mesh中
-                    skinnedMeshRenderer.BakeMesh(mesh);
                     // 复制所需信息
+                    mesh.vertices = skinnedMeshRenderer.sharedMesh.vertices;
+                    mesh.triangles = skinnedMeshRenderer.sharedMesh.triangles;
                     mesh.bindposes = skinnedMeshRenderer.sharedMesh.bindposes;
                     mesh.boneWeights = skinnedMeshRenderer.sharedMesh.boneWeights;
                     // 设置新Mesh
