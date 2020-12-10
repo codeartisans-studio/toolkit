@@ -30,12 +30,7 @@ namespace Toolkit
                     // 有蒙皮信息，需要复制骨骼权重等额外信息
                     SkinnedMeshRenderer skinnedMeshRenderer = renderer as SkinnedMeshRenderer;
                     // 实例化新Mesh
-                    mesh = new Mesh();
-                    // 复制所需信息
-                    mesh.vertices = skinnedMeshRenderer.sharedMesh.vertices;
-                    mesh.triangles = skinnedMeshRenderer.sharedMesh.triangles;
-                    mesh.bindposes = skinnedMeshRenderer.sharedMesh.bindposes;
-                    mesh.boneWeights = skinnedMeshRenderer.sharedMesh.boneWeights;
+                    mesh = Instantiate(skinnedMeshRenderer.sharedMesh);
                     // 设置新Mesh
                     skinnedMeshRenderer.sharedMesh = mesh;
                 }
