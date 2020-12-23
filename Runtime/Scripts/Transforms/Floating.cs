@@ -10,6 +10,7 @@ namespace Toolkit
         public float floatSpeed = 1f;
         public float floatRange = 1f;
         public float rotationSpeed = 20.0f;
+        public Vector2 offset = Vector2.zero;
 
         private float originalLocalPositionY;
 
@@ -24,7 +25,7 @@ namespace Toolkit
             Vector3 localPosition = transform.localPosition;
             Vector3 eulerAngles = transform.eulerAngles;
 
-            localPosition.y = originalLocalPositionY + Mathf.Sin(Time.time * floatSpeed) * floatRange;
+            localPosition.y = originalLocalPositionY + Mathf.Sin(Time.time * floatSpeed + offset.x) * floatRange + offset.y;
             eulerAngles.y += rotationSpeed * Time.deltaTime;
 
             transform.localPosition = localPosition;
