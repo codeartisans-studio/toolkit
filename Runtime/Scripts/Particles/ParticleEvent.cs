@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Particles/ParticleEvent")]
+    [AddComponentMenu("Toolkit/Particles/Particle Event")]
     [RequireComponent(typeof(ParticleSystem))]
     public class ParticleEvent : MonoBehaviour
     {

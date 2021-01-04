@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Controllers/FadingController")]
+    [AddComponentMenu("Toolkit/Controllers/Fading Controller")]
     [RequireComponent(typeof(Animator))]
     public class FadingController : Singleton<FadingController>
     {

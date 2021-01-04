@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Transforms/FollowTarget")]
+    [AddComponentMenu("Toolkit/Transforms/Follow Target")]
     public class FollowTarget : MonoBehaviour
     {
         public Transform target;

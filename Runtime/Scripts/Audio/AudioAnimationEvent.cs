@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Audios/AudioAnimationEvent")]
+    [AddComponentMenu("Toolkit/Audios/Audio Animation Event")]
     [RequireComponent(typeof(AudioSource))]
     public class AudioAnimationEvent : MonoBehaviour
     {

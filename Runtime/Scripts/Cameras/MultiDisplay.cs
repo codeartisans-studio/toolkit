@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Cameras/MultiDisplay")]
+    [AddComponentMenu("Toolkit/Cameras/Multi Display")]
     public class MultiDisplay : MonoBehaviour
     {
         // Use this for initialization

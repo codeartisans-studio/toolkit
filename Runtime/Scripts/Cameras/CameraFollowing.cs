@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Cameras/CameraFollowing")]
+    [AddComponentMenu("Toolkit/Cameras/Camera Following")]
     public class CameraFollowing : MonoBehaviour
     {
         public Transform target;

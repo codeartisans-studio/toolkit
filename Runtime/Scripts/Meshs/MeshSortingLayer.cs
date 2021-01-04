@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Meshs/MeshSortingLayer")]
+    [AddComponentMenu("Toolkit/Meshs/Mesh Sorting Layer")]
     public class MeshSortingLayer : MonoBehaviour
     {
         public string sortingLayer = "Default";
