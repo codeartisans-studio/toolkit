@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Meshs/OffsetMovement")]
+    [AddComponentMenu("Toolkit/Meshs/Offset Movement")]
     public class OffsetMovement : MonoBehaviour
     {
         public Vector2 speed = Vector2.left;

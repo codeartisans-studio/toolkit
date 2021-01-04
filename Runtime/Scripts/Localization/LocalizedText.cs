@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Localization/LocalizedText")]
+    [AddComponentMenu("Toolkit/Localization/Localized Text")]
     public class LocalizedText : MonoBehaviour
     {
         public string key;

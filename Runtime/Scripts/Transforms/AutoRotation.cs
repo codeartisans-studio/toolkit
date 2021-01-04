@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Transforms/AutoRotation")]
+    [AddComponentMenu("Toolkit/Transforms/Auto Rotation")]
     public class AutoRotation : MonoBehaviour
     {
         public Vector3 speed = Vector3.forward;

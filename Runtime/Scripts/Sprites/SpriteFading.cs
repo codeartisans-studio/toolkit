@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Sprites/SpriteFading")]
+    [AddComponentMenu("Toolkit/Sprites/Sprite Fading")]
     public class SpriteFading : MonoBehaviour
     {
         public float fadeSpeed = 2f;

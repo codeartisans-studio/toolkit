@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Cameras/CameraAdjustment")]
+    [AddComponentMenu("Toolkit/Cameras/Camera Adjustment")]
     [RequireComponent(typeof(Camera))]
     public class CameraAdjustment : MonoBehaviour
     {
