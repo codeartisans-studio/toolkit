@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Toolkit
 {
     [ExecuteInEditMode]
-    [AddComponentMenu("Toolkit/Cameras/CameraObliqueness")]
+    [AddComponentMenu("Toolkit/Cameras/Camera Obliqueness")]
     [RequireComponent(typeof(Camera))]
     public class CameraObliqueness : MonoBehaviour
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Audios/AudioTrigger")]
+    [AddComponentMenu("Toolkit/Audios/Audio Trigger")]
     [RequireComponent(typeof(AudioSource))]
     public class AudioTrigger : MonoBehaviour
     {

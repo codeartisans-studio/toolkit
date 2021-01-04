@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/UI/LabelFollow")]
+    [AddComponentMenu("Toolkit/UI/Label Follow")]
     public class LabelFollow : MonoBehaviour
     {
         public Transform target;

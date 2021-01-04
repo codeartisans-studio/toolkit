@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Transforms/AutoMovement")]
+    [AddComponentMenu("Toolkit/Transforms/Auto Movement")]
     public class AutoMovement : MonoBehaviour
     {
         public Vector3 speed = Vector3.left;

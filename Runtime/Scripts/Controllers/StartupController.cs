@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Controllers/StartupController")]
+    [AddComponentMenu("Toolkit/Controllers/Startup Controller")]
     public class StartupController : Singleton<StartupController>
     {
         void Awake()

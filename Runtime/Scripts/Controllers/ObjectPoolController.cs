@@ -12,7 +12,7 @@ namespace Toolkit
         public int count;
     }
 
-    [AddComponentMenu("Toolkit/Controllers/ObjectPoolController")]
+    [AddComponentMenu("Toolkit/Controllers/Object Pool Controller")]
     public class ObjectPoolController : Singleton<ObjectPoolController>
     {
         public PreloadedPrefab[] preloadedPrefabs;

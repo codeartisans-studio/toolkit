@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Toolkit
 {
     [ExecuteInEditMode]
-    [AddComponentMenu("Toolkit/Cameras/CameraPerspectivOffCenter")]
+    [AddComponentMenu("Toolkit/Cameras/Camera Perspective Off Center")]
     [RequireComponent(typeof(Camera))]
     public class CameraPerspectiveOffCenter : MonoBehaviour
     {

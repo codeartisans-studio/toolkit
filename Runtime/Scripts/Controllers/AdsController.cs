@@ -7,7 +7,7 @@ using UnityEngine.Advertisements;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Controllers/AdsController")]
+    [AddComponentMenu("Toolkit/Controllers/Ads Controller")]
     public class AdsController : Singleton<AdsController>
     {
         public const string PlacementIdVideo = "video";

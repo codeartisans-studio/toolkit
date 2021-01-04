@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Controllers/LocalizationController")]
+    [AddComponentMenu("Toolkit/Controllers/Localization Controller")]
     public class LocalizationController : Singleton<LocalizationController>
     {
         private Dictionary<string, string> localizedText = new Dictionary<string, string>();

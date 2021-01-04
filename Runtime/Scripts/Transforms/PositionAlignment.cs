@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Transforms/PositionAlignment")]
+    [AddComponentMenu("Toolkit/Transforms/Position Alignment")]
     public class PositionAlignment : MonoBehaviour
     {
         public SpriteAlignment alignment = SpriteAlignment.Center;

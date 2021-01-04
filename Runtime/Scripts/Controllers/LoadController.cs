@@ -13,7 +13,7 @@ using UnityEngine.SceneManagement;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Controllers/LoadController")]
+    [AddComponentMenu("Toolkit/Controllers/Load Controller")]
     public class LoadController : Singleton<LoadController>
     {
         public bool autoActivation = false;

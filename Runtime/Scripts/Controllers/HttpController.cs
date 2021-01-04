@@ -6,7 +6,7 @@ using UnityEngine.Networking;
 
 namespace Toolkit
 {
-    [AddComponentMenu("Toolkit/Controllers/HttpController")]
+    [AddComponentMenu("Toolkit/Controllers/Http Controller")]
     public class HttpController : Singleton<HttpController>
     {
         private void SetRequestHeaders(UnityWebRequest uwr, Dictionary<string, string> header)
