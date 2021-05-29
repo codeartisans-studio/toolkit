@@ -7,6 +7,11 @@ namespace Toolkit
 {
     public static class MathUtility
     {
+        // 向下取整模运算
+        public static float FloorMod(float a, float b) => a - Mathf.Floor(a / b) * b;
+        // 截取模运算（与结果%相同）
+        public static float TruncMod(float a, float b) => a - (int)(a / b) * b;
+
         /// <summary>
         /// Transforms the position from local space to world space. This is similar to Transform.TransformPoint but does not require a Transform.
         /// </summary>
