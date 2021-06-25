@@ -13,10 +13,12 @@ namespace Toolkit
         public Vector2 offset = Vector2.zero;
 
         private float originalLocalPositionY;
+        private float originalEulerAnglesY;
 
         void Start()
         {
             originalLocalPositionY = transform.localPosition.y;
+            originalEulerAnglesY = transform.localEulerAngles.y;
         }
 
         // Update is called once per frame
@@ -26,7 +28,7 @@ namespace Toolkit
             Vector3 eulerAngles = transform.eulerAngles;
 
             localPosition.y = originalLocalPositionY + Mathf.Sin(Time.time * floatSpeed + offset.x) * floatRange + offset.y;
-            eulerAngles.y += rotationSpeed * Time.deltaTime;
+            eulerAngles.y = originalEulerAnglesY + Time.time * rotationSpeed;
 
             transform.localPosition = localPosition;
             transform.eulerAngles = eulerAngles;
